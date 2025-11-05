@@ -26,7 +26,23 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// No hay CORS porque vamos a servir el frontend desde este mismo servidor
+app.use((req, res, next) => {
+  const origins = process.env.FRONTEND_ORIGIN
+    ? process.env.FRONTEND_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
+    : [];
+  const originHeader = req.headers.origin;
+  if (!origins.length) {
+    res.header("Access-Control-Allow-Origin", "*");
+  } else if (originHeader && origins.includes(originHeader)) {
+    res.header("Access-Control-Allow-Origin", originHeader);
+  }
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

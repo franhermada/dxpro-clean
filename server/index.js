@@ -202,10 +202,7 @@ app.use("/atlas_semiologico", express.static(path.join(__dirname, "atlas_semiolo
 const CLIENT_BUILD = path.join(__dirname, "client_build");
 if (fs.existsSync(CLIENT_BUILD)) {
   app.use(express.static(CLIENT_BUILD));
-  app.get("/*", (req, res, next) => {
-  if (req.path.startsWith("/api") || req.path.startsWith("/auth") || req.path.startsWith("/atlas_semiologico")) {
-    return next();
-  }
+  app.get(/^(?!\/api|\/auth|\/atlas_semiologico).*/, (req, res) => {
   res.sendFile(path.join(CLIENT_BUILD, "index.html"));
 });
 } else {

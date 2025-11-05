@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "../../estilos/Casos.css";
+import "../estilos/Casos.css";
 
 export default function CasosBasicos({ backendUrl }) {
   const [sistema, setSistema] = useState(null);

@@ -25,11 +25,13 @@ body {
 body {
   font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--texto);
-  background-image: url("/otros/fondo.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: url("/otros/fondo.png") center/cover no-repeat fixed;
+  background-color: #f4f7fb; /* color base de respaldo */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
+
 
 /* ====== TÍTULOS ====== */
 h1,
@@ -62,16 +64,14 @@ h3 {
 
 .card {
   width: clamp(280px, 90%, 1100px);
-  background: var(--card-bg);
+  padding: 40px 60px;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 16px;
   box-shadow: 0 3px 8px var(--gris-borde);
   backdrop-filter: blur(6px);
-  padding: 40px 60px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  margin: 40px auto;
   text-align: center;
+  max-height: fit-content;
 }
 
 /* ====== FOOTER ====== */

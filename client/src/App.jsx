@@ -367,7 +367,7 @@ if (aciertos >= threshold) {
       <nav className="navbar">
   <div className="navbar-inner">
     <div className="navbar-left">
-      <img src="/DxPro.png" alt="DxPro Logo" className="nav-logo" />
+      <img src="/otros/DxPro.png" alt="DxPro Logo" className="nav-logo" />
     </div>
 
     <div className="navbar-center">
@@ -414,9 +414,9 @@ if (aciertos >= threshold) {
             "DxPro es un simulador virtual de casos clínicos diseñado para que puedas poner en práctica y fortalecer tus habilidades clínicas en un entorno interactivo. Forma parte de un proyecto de investigación sobre el uso de herramientas digitales —incluyendo inteligencia artificial— en la formación académica de estudiantes de Medicina y Enfermería. El desarrollo se lleva adelante en la Facultad de Ciencias de la Salud perteneciente a la Universidad Nacional del Centro de la Provincia de Buenos Aires."
           </p>
           <div className="logos-inicio">
-            <img src="/DxPro.png" alt="DxPro Logo" className="logo-principal" />
-            <img src="/logo facultad inicio.png" alt="Facultad Logo Inicio" className="logo-facultad" />
-            <img src="/unicen logo.png" alt="Universidad Logo Inicio" className="logo-universidad" />
+            <img src="/otros/DxPro.png" alt="DxPro Logo" className="logo-principal" />
+            <img src="/otros/logo facultad inicio.png" alt="Facultad Logo Inicio" className="logo-facultad" />
+            <img src="/otros/unicen logo.png" alt="Universidad Logo Inicio" className="logo-universidad" />
           </div>
         </div>
       )}

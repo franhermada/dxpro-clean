@@ -1,3 +1,4 @@
+import "../estilos/BarraNavegacion.css";
 export default function BarraNavegacion({ seccion, setSeccion, usuario, setUsuario }) {
   const cerrarSesion = () => {
     localStorage.removeItem("usuario");

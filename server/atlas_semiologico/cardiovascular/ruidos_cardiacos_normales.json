@@ -1,0 +1,27 @@
+{
+  "titulo": "R1 y R2 — Ruidos cardíacos normales",
+  "tipo": "Ruidos cardíacos fisiológicos",
+  "descripcion": "Sonidos producidos por el cierre de las válvulas cardíacas durante el ciclo cardíaco. El primer ruido (R1) corresponde al cierre de las válvulas mitral y tricúspide, y el segundo ruido (R2) al cierre de las válvulas aórtica y pulmonar.",
+  "interpretacion": "R1 y R2 son los ruidos normales del corazón. Su audición clara, sin desdoblamientos ni soplos asociados, indica un funcionamiento valvular fisiológico y marca los límites de la sístole y la diástole.",
+  "detalles": {
+    "R1": {
+      "origen": "Cierre de las válvulas mitral y tricúspide al inicio de la sístole ventricular.",
+      "caracteristicas": [
+        "Mejor audible en el ápex (foco mitral).",
+        "De tono grave y prolongado.",
+        "Coincide con el pulso carotídeo."
+      ],
+      "importancia": "Marca el inicio de la sístole."
+    },
+    "R2": {
+      "origen": "Cierre de las válvulas aórtica y pulmonar al final de la sístole ventricular.",
+      "caracteristicas": [
+        "Mejor audible en los focos aórtico y pulmonar.",
+        "De tono más agudo y corto que el R1."
+      ],
+      "importancia": "Indica el inicio de la diástole."
+    }
+  },
+  "audio": "atlas_semiologico/cardiovascular/ruidos_normales_r1_r2.mp3",
+  "imagen": "atlas_semiologico/cardiovascular/diagrama_ruidos_normales.png"
+}

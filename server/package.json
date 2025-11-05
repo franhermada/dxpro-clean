@@ -1,0 +1,21 @@
+{
+  "name": "dxpro-server",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "fuse.js": "^7.1.0",
+    "mongoose": "^8.19.3",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

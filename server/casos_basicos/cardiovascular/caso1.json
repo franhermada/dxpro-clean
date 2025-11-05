@@ -1,0 +1,365 @@
+{
+  "presentacion": "Paciente masculino que se presenta en la guardia con dolor torácico.",
+  "respuestas": {
+    "nombre": {
+      "variantes": [
+        "como te llamas",
+        "nombre",
+        "quien sos",
+        "decime tu nombre",
+        "me decís tu nombre",
+        "como te dicen"
+      ],
+      "respuesta": "Me llamo Juan."
+    },
+    "edad": {
+      "variantes": [
+        "cuantos años tenes",
+        "que edad tenes",
+        "tu edad",
+        "edad del paciente",
+        "que edad tiene"
+      ],
+      "respuesta": "Tengo 55 años."
+    },
+    "motivo_consulta": {
+      "variantes": [
+        "por qué viene",
+        "a que viene",
+        "que lo trae por acá",
+        "por que venis",
+        "que te pasa",
+        "que te duele",
+        "que te anda pasando"
+      ],
+      "respuesta": "Vine porque me duele el pecho, es un dolor muy fuerte."
+    },
+    "inicio": {
+      "variantes": [
+        "cuando empezo el dolor",
+        "desde cuando duele",
+        "hace cuanto te duele",
+        "cuando arranco el dolor",
+        "inicio del dolor"
+      ],
+      "respuesta": "Empezó hace un par de horas, de golpe, mientras subía unas escaleras."
+    },
+    "contexto_inicio": {
+      "variantes": [
+        "que estabas haciendo",
+        "actividad al inicio",
+        "cuando comenzó que hacias",
+        "que hacias cuando empezo",
+        "en que momento empezó"
+      ],
+      "respuesta": "Estaba subiendo unas escaleras cuando me empezó el dolor."
+    },
+    "localizacion": {
+      "variantes": [
+        "donde te duele",
+        "ubicacion del dolor",
+        "en que parte",
+        "donde lo sentis",
+        "donde te molesta",
+        "dolor en el pecho"
+      ],
+      "respuesta": "En el medio del pecho, como si me apretaran fuerte."
+    },
+    "irradiacion": {
+      "variantes": [
+        "se va para algun lado",
+        "se corre",
+        "irradia",
+        "va para otro lado",
+        "te duele el brazo",
+        "te corre el dolor"
+      ],
+      "respuesta": "Se me va para el brazo izquierdo y hasta la mandíbula."
+    },
+    "caracteristicas": {
+      "variantes": [
+        "como es el dolor",
+        "que tipo de dolor",
+        "descripcion del dolor",
+        "como lo sentis",
+        "que sensación tenes",
+        "es opresivo o punzante"
+      ],
+      "respuesta": "Es como si me apretaran el pecho con una piedra, muy fuerte."
+    },
+    "intensidad": {
+      "variantes": [
+        "cuanto te duele",
+        "intensidad",
+        "escala del 1 al 10",
+        "dolor fuerte",
+        "cuanto del 1 al 10"
+      ],
+      "respuesta": "Muy fuerte, como un 8 de 10."
+    },
+    "evolucion": {
+      "variantes": [
+        "como evoluciono",
+        "cambio el dolor",
+        "mejora o empeora",
+        "sigue igual",
+        "empeoro",
+        "te calma algo"
+      ],
+      "respuesta": "Desde que empezó sigue igual, no se me pasa con nada."
+    },
+    "alivio": {
+      "variantes": [
+        "que lo calma",
+        "que lo mejora",
+        "algo lo alivia",
+        "como se te pasa",
+        "que hiciste para aliviarlo"
+      ],
+      "respuesta": "Solo mejora un poco si me quedo quieto y sentado tranquilo."
+    },
+    "factores": {
+      "variantes": [
+        "que lo empeora",
+        "algo lo hace peor",
+        "factores de riesgo",
+        "que lo desencadena",
+        "cuando se intensifica"
+      ],
+      "respuesta": "Se pone peor cuando hago esfuerzo o cuando me muevo."
+    },
+    "disnea": {
+      "variantes": [
+        "tenes disnea",
+        "dificultad respiratoria",
+        "te falta el aire",
+        "respiras mal",
+        "sentis falta de aire"
+      ],
+      "respuesta": "Sí, me cuesta respirar desde que empezó el dolor, como si me faltara el aire."
+    },
+    "diaforesis": {
+      "variantes": [
+        "estas transpirado",
+        "sudoracion",
+        "estas sudando",
+        "tenes frio y sudor",
+        "estas empapado"
+      ],
+      "respuesta": "Sí, empecé a transpirar mucho cuando me empezó el dolor."
+    },
+    "nauseas": {
+      "variantes": [
+        "tenes nauseas",
+        "ganas de vomitar",
+        "vomito",
+        "te sentis mareado",
+        "mareos",
+        "arcadas"
+      ],
+      "respuesta": "Sí, me dieron ganas de vomitar y un poco de mareo."
+    },
+    "estado_conciencia": {
+      "variantes": [
+        "estas consciente",
+        "estas mareado",
+        "sentis que te desmayas",
+        "estas lúcido"
+      ],
+      "respuesta": "Estoy consciente, pero me siento débil y un poco mareado."
+    },
+    "piernas": {
+      "variantes": [
+        "como estan tus piernas",
+        "las notas hinchadas",
+        "piernas hinchadas",
+        "tenes hinchazon en las piernas",
+        "se te hinchan los pies",
+        "como tenes las piernas"
+      ],
+      "respuesta": "Las veo normales, no las noto más hinchadas de lo habitual."
+    },
+    "antecedentes": {
+      "variantes": [
+        "antecedentes",
+        "tenes enfermedades",
+        "alguna enfermedad",
+        "sos hipertenso",
+        "tenes colesterol alto"
+      ],
+      "respuesta": "Tengo presión alta y colesterol alto."
+    },
+    "antecedentes_familiares": {
+      "variantes": [
+        "antecedentes familiares",
+        "tu familia tuvo algo",
+        "familia",
+        "algún infarto en la familia"
+      ],
+      "respuesta": "Mi papá murió de un infarto a los 60 años."
+    },
+    "diabetes": {
+      "variantes": [
+        "sos diabetico",
+        "tenes diabetes",
+        "azucar alta",
+        "glucemia alta"
+      ],
+      "respuesta": "No, nunca me dijeron que tuviera azúcar alta."
+    },
+    "habitos_tabaquicos": {
+      "variantes": [
+        "fumas",
+        "tabaco",
+        "cigarro",
+        "fumador",
+        "cuanto fumas"
+      ],
+      "respuesta": "Sí, fumo un atado por día hace muchos años."
+    },
+    "habitos_alcohol": {
+      "variantes": [
+        "bebes",
+        "alcohol",
+        "cerveza",
+        "vino",
+        "tomás algo"
+      ],
+      "respuesta": "Tomo una copa de vino en la cena casi todos los días."
+    },
+    "actividad_fisica": {
+      "variantes": [
+        "haces ejercicio",
+        "actividad fisica",
+        "caminar",
+        "gimnasio",
+        "vida activa"
+      ],
+      "respuesta": "Casi nada, soy bastante sedentario."
+    },
+    "medicacion": {
+      "variantes": [
+        "tomas medicación",
+        "que remedios tomas",
+        "medicamentos",
+        "estas en tratamiento"
+      ],
+      "respuesta": "Tomo enalapril para la presión todos los días."
+    },
+    "tiempo_medicacion": {
+      "variantes": [
+        "hace cuanto tomas enalapril",
+        "desde cuando tomas enalapril",
+        "tratamiento antihipertensivo hace cuanto",
+        "tiempo enalapril"
+      ],
+      "respuesta": "Lo tomo desde hace unos 5 años, cuando me diagnosticaron hipertensión."
+    },
+    "signos_vitales": {
+      "variantes": [
+        "signos vitales",
+        "constantes vitales",
+        "tension y pulso",
+        "ta fc fr sat temp"
+      ],
+      "respuesta": "TA 150/95 mmHg, FC 95 lpm, FR 22 rpm, SatO2 92%, Temp 37.2°C."
+    },
+    "inspeccion_general": {
+      "variantes": [
+        "aspecto fisico",
+        "inspeccion visual",
+        "como se ve",
+        "estado general",
+        "exploracion general",
+        "como lo ves"
+      ],
+      "respuesta": "Se lo ve pálido, transpirado, con expresión de dolor y cierta ansiedad."
+    },
+    "examen_cardiovascular": {
+      "variantes": [
+        "corazon",
+        "examen cardiaco",
+        "auscultacion cardiaca",
+        "latidos",
+        "ritmo cardiaco"
+      ],
+      "respuesta": "Ritmo regular, sin soplos. Dolor a la palpación del pecho ausente."
+    },
+    "examen_respiratorio": {
+      "variantes": [
+        "pulmones",
+        "examen respiratorio",
+        "auscultacion pulmonar",
+        "respiracion",
+        "ruidos respiratorios"
+      ],
+      "respuesta": "Murmullo vesicular conservado, sin ruidos agregados ni crepitantes."
+    },
+    "examen_abdominal": {
+      "variantes": [
+        "abdomen",
+        "palpacion abdomen",
+        "examen abdominal",
+        "barriga"
+      ],
+      "respuesta": "Está blando, depresible y no duele al apretar."
+    },
+    "electrocardiograma": {
+      "variantes": [
+        "ecg",
+        "electro",
+        "electrocardiograma",
+        "electro del paciente"
+      ],
+      "respuesta": "ECG con supradesnivel del ST en derivaciones V2-V4, compatible con infarto anterior."
+    },
+    "laboratorio": {
+      "variantes": [
+        "analisis",
+        "laboratorio",
+        "analitica",
+        "sangre",
+        "resultados del laboratorio"
+      ],
+      "respuesta": "Troponina alta (0.8 ng/mL), colesterol total 250 mg/dL, glucemia 110 mg/dL."
+    },
+    "radiografia": {
+      "variantes": [
+        "rx",
+        "radiografia",
+        "placa de torax",
+        "radiografía de pecho"
+      ],
+      "respuesta": "La radiografía de tórax no muestra alteraciones, sin signos de congestión ni derrame."
+    },
+    "ecocardiograma": {
+      "variantes": [
+        "eco",
+        "ecocardiograma",
+        "eco cardiaco",
+        "eco del corazon"
+      ],
+      "respuesta": "Se observa hipocinesia anterior, con fracción de eyección disminuida."
+    }
+  },
+  "evaluacion": {
+    "diagnostico_presuntivo": [
+      "Infarto agudo de miocardio con supradesnivel del ST (IAMCEST)",
+      "Pericarditis aguda",
+      "Disección aórtica",
+      "Embolia pulmonar",
+      "Neumonía"
+    ],
+    "tratamiento_inicial_esperado": [
+      "Aspirina 300 mg masticada",
+      "Oxígeno suplementario si SatO2 < 94%",
+      "Monitoreo cardíaco continuo",
+      "Acceso venoso periférico",
+      "Nitratos sublinguales si no hay hipotensión",
+      "Clopidogrel",
+      "Heparina",
+      "Derivación urgente a unidad coronaria"
+    ]
+  },
+  "desconocido": "No entendí tu pregunta, ¿podés decirlo de otra manera?"
+}

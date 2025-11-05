@@ -455,7 +455,7 @@ if (aciertos >= threshold) {
       )}
 
       {section === "casos-basicos" && (
-        <div className="caso-section main-layout">
+        <div className="section card">
           <h2>Casos Básicos</h2>
 
           {!selectedSystem ? (
@@ -631,7 +631,7 @@ if (aciertos >= threshold) {
 )}
 
 {section === "atlas" && (
-  <div className="atlas-section main-layout">
+  <div className="section card">
     <h2>Atlas Semiológico</h2>
     <p>
       Explora los principales signos y maniobras semiológicas clasificados por sistema.

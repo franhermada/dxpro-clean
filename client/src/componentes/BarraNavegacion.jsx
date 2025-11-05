@@ -1,4 +1,5 @@
 import "../estilos/BarraNavegacion.css";
+
 export default function BarraNavegacion({ seccion, setSeccion, usuario, setUsuario }) {
   const cerrarSesion = () => {
     localStorage.removeItem("usuario");
@@ -8,27 +9,27 @@ export default function BarraNavegacion({ seccion, setSeccion, usuario, setUsuar
 
   return (
     <nav className="navbar">
-      <div className="navbar-izquierda">
-        <img src="/otros/DxPro.png" alt="DxPro Logo" className="logo-nav" />
+      <div className="navbar-left">
+        <img src="/otros/DxPro.png" alt="DxPro Logo" className="nav-logo" />
       </div>
 
-      <div className="navbar-centro">
-        <button onClick={() => setSeccion("inicio")}>Inicio</button>
-        <button onClick={() => setSeccion("tutorial")}>Tutorial</button>
-        <button onClick={() => setSeccion("casos-basicos")}>Básico</button>
-        <button onClick={() => setSeccion("casos-avanzados")}>Avanzado</button>
-        <button onClick={() => setSeccion("atlas")}>Atlas</button>
-        <button onClick={() => setSeccion("sobre-dxpro")}>Sobre DxPro</button>
+      <div className="navbar-center">
+        <button className="nav-btn" onClick={() => setSeccion("inicio")}>Inicio</button>
+        <button className="nav-btn" onClick={() => setSeccion("tutorial")}>Tutorial</button>
+        <button className="nav-btn" onClick={() => setSeccion("casos-basicos")}>Básico</button>
+        <button className="nav-btn" onClick={() => setSeccion("casos-avanzados")}>Avanzado</button>
+        <button className="nav-btn" onClick={() => setSeccion("atlas")}>Atlas</button>
+        <button className="nav-btn" onClick={() => setSeccion("sobre-dxpro")}>Sobre DxPro</button>
       </div>
 
-      <div className="navbar-derecha">
+      <div className="navbar-right">
         {usuario ? (
           <>
-            <span className="usuario-info">👤 {usuario.fullName?.split(" ")[0]}</span>
-            <button onClick={cerrarSesion}>Cerrar sesión</button>
+            <span className="user-info">👤 {usuario.fullName?.split(" ")[0]}</span>
+            <button className="logout-btn" onClick={cerrarSesion}>Cerrar sesión</button>
           </>
         ) : (
-          <button onClick={() => setSeccion("login")}>Ingresar</button>
+          <button className="ingresar-btn" onClick={() => setSeccion("login")}>Ingresar</button>
         )}
       </div>
     </nav>

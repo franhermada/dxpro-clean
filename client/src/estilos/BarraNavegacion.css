@@ -1,0 +1,54 @@
+/* ====== NAVBAR ====== */
+.navbar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 75px;
+  background: var(--azul);
+  box-shadow: 0 2px 5px rgba(0,0,0,.15);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-inner{
+  width: min(1600px, 100%);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.navbar-left, .navbar-center, .navbar-right{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-left .nav-logo{
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Botones navbar */
+.nav-btn{
+  background: #fff;
+  color: var(--azul);
+  border: 0;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,.10);
+}
+.nav-btn:hover{ background:#e9eef4; transform: translateY(-2px); }
+
+.ingresar-btn{ background: var(--azul-2); color:#fff; }
+.ingresar-btn:hover{ background:#0059b3; }

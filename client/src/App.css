@@ -608,3 +608,36 @@ button:hover {
   margin-top: 0;
   color: #007bff;
 }
+/* === FIX FINAL DE CENTRADO Y DESPLAZAMIENTO === */
+
+/* 1️⃣ Quita el espacio blanco a la derecha */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* 2️⃣ Asegura que las secciones y tarjetas se centren sin desplazarse */
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1100px;
+  box-sizing: border-box;
+}
+
+/* 3️⃣ Mantiene el footer en su lugar correctamente */
+.footer {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}

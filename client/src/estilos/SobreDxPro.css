@@ -81,3 +81,12 @@
   color: #555;
   line-height: 1.3;
 }
+/* ===== AJUSTE DE PADDING SUPERIOR ===== */
+.seccion {
+  padding-top: 100px; /* deja espacio para la navbar fija */
+}
+
+.card.contenido-sobre {
+  margin-top: 0;
+  margin-bottom: 40px;
+}

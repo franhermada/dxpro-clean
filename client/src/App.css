@@ -608,36 +608,51 @@ button:hover {
   margin-top: 0;
   color: #007bff;
 }
-/* === FIX FINAL DE CENTRADO Y DESPLAZAMIENTO === */
+/* === FIX DEFINITIVO DE CENTRADO Y OVERFLOW === */
 
-/* 1️⃣ Quita el espacio blanco a la derecha */
+/* 1️⃣ Evita que el fondo o sombras generen scroll lateral */
 html, body {
+  margin: 0;
+  padding: 0;
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100% !important;
+  box-sizing: border-box;
 }
 
-/* 2️⃣ Asegura que las secciones y tarjetas se centren sin desplazarse */
+/* 2️⃣ Centra el contenido principal correctamente */
+.app-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3️⃣ Mantiene las secciones centradas y ajustadas */
 .section {
+  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .card {
-  margin: 0 auto;
   width: 90%;
   max-width: 1100px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* 3️⃣ Mantiene el footer en su lugar correctamente */
+/* 4️⃣ Evita que la navbar o el footer generen desplazamiento */
+.navbar,
 .footer {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   margin: 0 auto;
-  left: 0;
-  right: 0;
+  box-sizing: border-box;
 }

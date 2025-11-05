@@ -1,3 +1,4 @@
+import "../estilos/SobreDxPro.css";
 export default function SobreDxPro() {
   return (
     <div className="seccion card">

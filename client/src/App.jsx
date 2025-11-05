@@ -482,7 +482,7 @@ if (aciertos >= threshold) {
             <div className="chat-wrapper">
               <div className="chat-card">
                 <div className="chat-header">
-                  <img src="/DxPro.png" alt="DxPro Logo" className="logo-chat" />
+                  <img src="/otros/DxPro.png" alt="DxPro Logo" className="logo-chat" />
                   <h1 className="chat-title">Simulación de Caso</h1>
                   <button className="mini-btn" onClick={handleBackToSystems}>
                     ← Volver a sistemas

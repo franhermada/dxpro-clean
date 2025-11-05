@@ -141,9 +141,10 @@ html, body {
   padding: 40px 60px;
   border-radius: 16px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
-  width: 90%;                 /* deja márgenes a los costados */
-  max-width: 1100px;          /* mantiene un límite visual */
-  backdrop-filter: blur(6px); /* le da un leve efecto de vidrio */
+  width: 85%;                /* ancho menor para dejar borde */
+  max-width: 1100px;         /* límite visual */
+  margin: 0 auto;            /* ✅ centra horizontalmente */
+  backdrop-filter: blur(6px);
 }
 
 /* ---------- SISTEMAS ---------- */

@@ -2,15 +2,13 @@ import "../estilos/SobreDxPro.css";
 
 export default function SobreDxPro() {
   return (
-    <div className="seccion">
-      {/* --- INTRODUCCIÓN Y ASPECTOS LEGALES --- */}
-      <div className="card contenido-sobre">
+    <div className="seccion sobredxpro">
+      <div className="card">
         <h2>Sobre DxPro</h2>
         <p>
           <b>DxPro</b> es una plataforma educativa desarrollada en la Facultad de Ciencias de la
-          Salud (UNCPBA) con el objetivo de fortalecer la enseñanza del razonamiento clínico
-          mediante simulaciones interactivas, para favorecer la toma de decisiones diagnósticas y
-          terapéuticas.
+          Salud (UNCPBA) con el objetivo de fortalecer la enseñanza del razonamiento clínico mediante
+          simulaciones interactivas, para favorecer la toma de decisiones diagnósticas y terapéuticas.
         </p>
 
         <h3>Aspectos legales</h3>
@@ -21,10 +19,8 @@ export default function SobreDxPro() {
         </p>
 
         <h3>Equipo de trabajo</h3>
-      </div>
 
-      {/* --- CARRUSEL HORIZONTAL DE EQUIPO --- */}
-      <div className="carrusel-contenedor">
+        {/* Carrusel centrado dentro del card */}
         <div className="equipo-carrusel">
           <div className="miembro">
             <img src="/equipo/juan.png" alt="Hermada, Juan Francisco" />

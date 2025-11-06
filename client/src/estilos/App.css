@@ -51,7 +51,8 @@ h3 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 75px; /* espacio por navbar fija */
+  padding-top: 75px;
+  justify-content: space-between;
 }
 
 .section {

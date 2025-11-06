@@ -29,7 +29,7 @@ export default function App() {
         {seccion === "tutorial" && <Tutorial />}
         {seccion === "casos-basicos" && <CasosBasicos backendUrl={BACKEND_URL} />}
         {seccion === "casos-avanzados" && <CasosAvanzados />}
-        {seccion === "atlas" && <Atlas backendUrl={BACKEND_URL} />}
+        {seccion === "atlas" && <Atlas />}
         {seccion === "sobre-dxpro" && <SobreDxPro />}
         {seccion === "login" && (
           <Login backendUrl={BACKEND_URL} setUsuario={setUsuario} setSeccion={setSeccion} />

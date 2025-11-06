@@ -21,42 +21,54 @@ if (!MONGO_URI) {
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("✅ Conectado a MongoDB"))
-  .catch((err) => { console.error("❌ MongoDB:", err); process.exit(1); });
+  .catch((err) => {
+    console.error("❌ Error MongoDB:", err);
+    process.exit(1);
+  });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// --- Configuración CORS ---
 app.use((req, res, next) => {
-  const origins = process.env.FRONTEND_ORIGIN
-    ? process.env.FRONTEND_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
-    : [];
-  const originHeader = req.headers.origin;
-  if (!origins.length) {
-    res.header("Access-Control-Allow-Origin", "*");
-  } else if (originHeader && origins.includes(originHeader)) {
-    res.header("Access-Control-Allow-Origin", originHeader);
-  }
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
+  if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// --- Autenticación ---
 app.use("/auth", authRoutes);
 
+// --- Casos clínicos ---
 const BASE_CASES_PATH = path.join(__dirname, "casos_basicos");
 const loadedCases = {};
-
-const STOPWORDS_ES = new Set(["el","la","los","las","un","una","unos","unas","de","del","al","a","ante","bajo","cabe","con","contra","desde","durante","en","entre","hacia","hasta","para","por","segun","sin","sobre","tras","y","o","u","e","que","qué","como","cómo","cual","cuales","cuál","cuáles","cuanto","cuánta","cuantos","cuántos","cuanta","cuánta","cuando","cuándo","donde","dónde","quien","quién","quienes","quiénes","yo","tu","tú","vos","usted","ustedes","mi","mis","su","sus","es","son","esta","está","estan","están","soy","eres","somos","ser","estar","hay","tener","tiene","tenes","tienes","tienen","hace","hacia"]);
+const STOPWORDS_ES = new Set([
+  "el","la","los","las","un","una","unos","unas","de","del","al","a","ante","bajo","cabe","con","contra","desde","durante","en","entre","hacia","hasta",
+  "para","por","segun","sin","sobre","tras","y","o","u","e","que","qué","como","cómo","cual","cuales","cuál","cuáles","cuanto","cuánta","cuantos",
+  "cuántos","cuanta","cuánta","cuando","cuándo","donde","dónde","quien","quién","quienes","quiénes","yo","tu","tú","vos","usted","ustedes","mi",
+  "mis","su","sus","es","son","esta","está","estan","están","soy","eres","somos","ser","estar","hay","tener","tiene","tenes","tienes","tienen",
+  "hace","hacia"
+]);
 
 const normalize = (t) =>
-  String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\p{L}\p{N}\s]/gu," ").replace(/\s+/g," ").trim();
+  String(t || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-const tokenize = (t) => normalize(t).split(" ").filter(Boolean).filter(w => !STOPWORDS_ES.has(w) && w.length>=3);
+const tokenize = (t) =>
+  normalize(t)
+    .split(" ")
+    .filter(Boolean)
+    .filter((w) => !STOPWORDS_ES.has(w) && w.length >= 3);
 
 function buildIndexesForCase(caseData) {
   const variantMapExact = new Map();
@@ -72,7 +84,13 @@ function buildIndexesForCase(caseData) {
     }
     fuseList.push({ intent, variantes, respuesta: obj.respuesta });
   }
-  const fuse = new Fuse(fuseList, { keys: ["variantes"], includeScore: true, threshold: 0.34, ignoreLocation: true, minMatchCharLength: 3 });
+  const fuse = new Fuse(fuseList, {
+    keys: ["variantes"],
+    includeScore: true,
+    threshold: 0.34,
+    ignoreLocation: true,
+    minMatchCharLength: 3
+  });
   return { variantMapExact, variantIndex, fuse };
 }
 
@@ -90,30 +108,44 @@ function loadCase(caseId, casePath) {
 function getAllCasesList() {
   const out = [];
   if (!fs.existsSync(BASE_CASES_PATH)) return out;
-  const systems = fs.readdirSync(BASE_CASES_PATH, { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name);
+  const systems = fs
+    .readdirSync(BASE_CASES_PATH, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
   for (const sys of systems) {
     const sysPath = path.join(BASE_CASES_PATH, sys);
-    const files = fs.readdirSync(sysPath).filter(f => f.endsWith(".json"));
-    for (const f of files) out.push({ caseId: `${sys}/${f}`, casePath: path.join(sysPath, f) });
+    const files = fs.readdirSync(sysPath).filter((f) => f.endsWith(".json"));
+    for (const f of files)
+      out.push({ caseId: `${sys}/${f}`, casePath: path.join(sysPath, f) });
   }
   return out;
 }
 
-app.get("/", (_req, res) => res.send("✅ DxPro API viva"));
+// --- Endpoints ---
+app.get("/", (_req, res) => res.send("✅ DxPro API activa"));
 
 app.get("/api/caso", (req, res) => {
   try {
     const system = (req.query.system || "all").toString().toLowerCase();
-    if (!fs.existsSync(BASE_CASES_PATH)) return res.status(500).json({ error: "No existe carpeta de casos." });
+    if (!fs.existsSync(BASE_CASES_PATH))
+      return res.status(500).json({ error: "No existe carpeta de casos." });
 
     let candidates = [];
     if (system === "all" || system === "todos") candidates = getAllCasesList();
     else {
       const sysPath = path.join(BASE_CASES_PATH, system);
-      if (!fs.existsSync(sysPath)) return res.status(400).json({ error: "Sistema no encontrado." });
-      candidates = fs.readdirSync(sysPath).filter(f => f.endsWith(".json")).map(f => ({ caseId: `${system}/${f}`, casePath: path.join(sysPath, f) }));
+      if (!fs.existsSync(sysPath))
+        return res.status(400).json({ error: "Sistema no encontrado." });
+      candidates = fs
+        .readdirSync(sysPath)
+        .filter((f) => f.endsWith(".json"))
+        .map((f) => ({
+          caseId: `${system}/${f}`,
+          casePath: path.join(sysPath, f)
+        }));
     }
-    if (!candidates.length) return res.status(404).json({ error: "No hay casos disponibles." });
+    if (!candidates.length)
+      return res.status(404).json({ error: "No hay casos disponibles." });
 
     const chosen = candidates[Math.floor(Math.random() * candidates.length)];
     const c = loadCase(chosen.caseId, chosen.casePath);
@@ -131,98 +163,7 @@ app.get("/api/caso", (req, res) => {
   }
 });
 
-app.post("/api/preguntar", (req, res) => {
-  try {
-    const { pregunta, caseId } = req.body;
-    if (!pregunta || !caseId) return res.status(400).json({ error: "Faltan datos." });
-
-    const c = loadedCases[caseId];
-    if (!c) return res.status(404).json({ error: "Caso no encontrado." });
-
-    const norm = normalize(pregunta);
-    const tokens = tokenize(pregunta);
-
-    // exacta
-    const exact = c.variantMapExact.get(norm);
-    if (exact) return res.json({ respuesta: exact.respuesta });
-
-    // jaccard
-    let best = { score: 0, resp: null };
-    for (const v of c.variantIndex) {
-      const A = new Set(tokens), B = new Set(v.tokens);
-      let inter = 0; for (const t of A) if (B.has(t)) inter++;
-      const uni = A.size + B.size - inter;
-      const score = uni === 0 ? 0 : inter / uni;
-      if (score > best.score) best = { score, resp: v.respuesta };
-    }
-    if (best.score >= 0.5) return res.json({ respuesta: best.resp });
-
-    // fuzzy
-    const found = c.fuse.search(pregunta);
-    if (found.length && found[0].score < 0.4) return res.json({ respuesta: found[0].item.respuesta });
-
-    res.json({ respuesta: c.data.desconocido || "No entendí tu pregunta." });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Error al procesar la pregunta." });
-  }
+// --- Iniciar servidor ---
+app.listen(PORT, () => {
+  console.log(`✅ API viva en puerto ${PORT}`);
 });
-
-app.post("/api/evaluar", (req, res) => {
-  try {
-    const { caseId, diagnostico, tratamiento } = req.body;
-    if (!caseId) return res.status(400).json({ error: "Falta caseId" });
-
-    const c = loadedCases[caseId];
-    if (!c) return res.status(404).json({ error: "Caso no encontrado" });
-
-    const evalData = c.data.evaluacion || {};
-    const diagEsperados = (evalData.diagnostico_presuntivo || []).map(normalize);
-    const tratEsperados = (evalData.tratamiento_inicial_esperado || []).map(normalize);
-
-    const diagOk = diagEsperados.includes(normalize(diagnostico));
-    const userTrats = (tratamiento || "").split(",").map(normalize).filter(Boolean);
-    const correctos = userTrats.filter(t => tratEsperados.includes(t));
-    const faltantes = tratEsperados.filter(t => !userTrats.includes(t));
-
-    res.json({ diagnosticoCorrecto: diagOk, correctos, faltantes });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Error al evaluar." });
-  }
-});
-
-// --- Atlas semiológico ---
-app.get("/api/atlas", (req, res) => {
-  try {
-    const system = (req.query.system || "").toLowerCase();
-    if (!system) return res.status(400).json({ error: "Debe especificar sistema" });
-
-    const base = path.join(__dirname, "atlas_semiologico");
-    const dir = path.join(base, system);
-    if (!fs.existsSync(dir)) return res.status(404).json({ error: "Sistema no encontrado" });
-
-    const files = fs.readdirSync(dir).filter(f => f.endsWith(".json"));
-    const data = files.map(f => JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")));
-    res.json(data);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Error al cargar atlas" });
-  }
-});
-
-// archivos estáticos del atlas
-app.use("/atlas_semiologico", express.static(path.join(__dirname, "atlas_semiologico")));
-
-// --- Servir frontend build ---
-const CLIENT_BUILD = path.join(__dirname, "client_build");
-if (fs.existsSync(CLIENT_BUILD)) {
-  app.use(express.static(CLIENT_BUILD));
-  app.get(/^(?!\/api|\/auth|\/atlas_semiologico).*/, (req, res) => {
-  res.sendFile(path.join(CLIENT_BUILD, "index.html"));
-});
-} else {
-  console.warn("⚠️ No se encontró client_build: el frontend no será servido por Express.");
-}
-
-app.listen(PORT, () => console.log(`✅ API viva en puerto ${PORT}`));

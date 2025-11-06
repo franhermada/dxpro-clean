@@ -44,7 +44,11 @@ export default function CasosBasicos({ backendUrl }) {
     <div className="seccion casos-basicos">
       <div className="card">
         <h2>Casos Básicos</h2>
-
+        <p>
+          Casos clínicos de baja complejidad, ideales para estudiantes que están comenzando su formación en Medicina.
+          Permite desarrollar una buena anamnesis, exploración física y razonamiento clínico básico.
+          Cuando se solicitan estudios complementarios, el sistema devuelve el informe correspondiente.
+        </p>
         {!sistema ? (
           <div className="sistemas-grid">
             <h3>Seleccioná un sistema</h3>

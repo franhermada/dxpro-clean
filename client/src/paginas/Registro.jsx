@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../estilos/Secciones.css";
 
 export default function Registro({ backendUrl, setSeccion }) {
   const [universidad, setUniversidad] = useState("");

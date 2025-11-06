@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./estilos/App.css";
-import BarraNavegacion from "./componentes/BarraNavegacion.jsx";
-import Inicio from "./paginas/Inicio.jsx";
-import Tutorial from "./paginas/Tutorial.jsx";
-import CasosBasicos from "./paginas/CasosBasicos.jsx";
-import CasosAvanzados from "./paginas/CasosAvanzados.jsx";
-import Atlas from "./paginas/Atlas.jsx";
-import SobreDxPro from "./paginas/SobreDxPro.jsx";
-import Login from "./paginas/Login.jsx";
-import Registro from "./paginas/Registro.jsx";
+import BarraNavegacion from "./componentes/BarraNavegacion";
+import Inicio from "./paginas/Inicio";
+import Tutorial from "./paginas/Tutorial";
+import CasosBasicos from "./paginas/CasosBasicos";
+import CasosAvanzados from "./paginas/CasosAvanzados";
+import Atlas from "./paginas/Atlas";
+import SobreDxPro from "./paginas/SobreDxPro";
+import Login from "./paginas/Login";
+import Registro from "./paginas/Registro";
 
 export default function App() {
   const [seccion, setSeccion] = useState("inicio");
@@ -24,16 +24,18 @@ export default function App() {
         setUsuario={setUsuario}
       />
 
-      {seccion === "inicio" && <Inicio />}
-      {seccion === "tutorial" && <Tutorial />}
-      {seccion === "casos-basicos" && <CasosBasicos backendUrl={BACKEND_URL} />}
-      {seccion === "casos-avanzados" && <CasosAvanzados />}
-      {seccion === "atlas" && <Atlas backendUrl={BACKEND_URL} />}
-      {seccion === "sobre-dxpro" && <SobreDxPro />}
-      {seccion === "login" && (
-        <Login backendUrl={BACKEND_URL} setUsuario={setUsuario} setSeccion={setSeccion} />
-      )}
-      {seccion === "registro" && <Registro backendUrl={BACKEND_URL} setSeccion={setSeccion} />}
+      <main>
+        {seccion === "inicio" && <Inicio />}
+        {seccion === "tutorial" && <Tutorial />}
+        {seccion === "casos-basicos" && <CasosBasicos backendUrl={BACKEND_URL} />}
+        {seccion === "casos-avanzados" && <CasosAvanzados />}
+        {seccion === "atlas" && <Atlas backendUrl={BACKEND_URL} />}
+        {seccion === "sobre-dxpro" && <SobreDxPro />}
+        {seccion === "login" && (
+          <Login backendUrl={BACKEND_URL} setUsuario={setUsuario} setSeccion={setSeccion} />
+        )}
+        {seccion === "registro" && <Registro backendUrl={BACKEND_URL} setSeccion={setSeccion} />}
+      </main>
 
       <footer className="footer">
         DxPRO — Todos los derechos reservados. Proyecto ideado y desarrollado por{" "}

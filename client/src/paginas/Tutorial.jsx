@@ -1,8 +1,11 @@
+import "../estilos/Secciones.css";
+
 export default function Tutorial() {
   return (
-    <div className="seccion card">
-      <h2>Tutorial</h2>
-      <ol className="tutorial-lista">
+    <div className="seccion tutorial">
+      <div className="card">
+        <h2>Tutorial</h2>
+       <ol className="tutorial-lista">
         <li>
               Se le presentará un paciente con un motivo de consulta inicial. 
               El primer paso será realizar una anamnesis completa, formulando preguntas que considere relevantes. 
@@ -29,6 +32,7 @@ export default function Tutorial() {
               tras lo cual recibirá una retroalimentación formativa.
             </li>
       </ol>
+      </div>
     </div>
   );
 }

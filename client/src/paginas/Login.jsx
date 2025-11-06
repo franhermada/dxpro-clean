@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../estilos/Secciones.css";
 
 export default function Login({ backendUrl, setUsuario, setSeccion }) {
   const [email, setEmail] = useState("");

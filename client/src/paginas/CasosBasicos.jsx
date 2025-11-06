@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../estilos/Secciones.css";
 import "../estilos/Casos.css";
 
 export default function CasosBasicos({ backendUrl }) {
@@ -33,47 +34,57 @@ export default function CasosBasicos({ backendUrl }) {
     cargarCaso();
   }, [sistema]);
 
+  const handleEnviar = () => {
+    if (!mensaje.trim()) return;
+    setMensajes([...mensajes, { autor: "usuario", texto: mensaje }]);
+    setMensaje("");
+  };
+
   return (
-    <div className="seccion card">
-      <h2>Casos Básicos</h2>
+    <div className="seccion casos-basicos">
+      <div className="card">
+        <h2>Casos Básicos</h2>
 
-      {!sistema ? (
-        <div className="sistemas-grid">
-          <h3>Seleccioná un sistema</h3>
-          {SISTEMAS.map((s) => (
-            <button key={s} onClick={() => setSistema(s)}>
-              {s}
+        {!sistema ? (
+          <div className="sistemas-grid">
+            <h3>Seleccioná un sistema</h3>
+            <div className="botones-sistemas">
+              {SISTEMAS.map((s) => (
+                <button key={s} onClick={() => setSistema(s)}>
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : cargando ? (
+          <p>⏳ Cargando caso clínico...</p>
+        ) : (
+          <div className="chat-caso">
+            <div className="chat-box">
+              {mensajes.map((m, i) => (
+                <div key={i} className={`message ${m.autor}`}>
+                  {m.texto}
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+
+            <div className="input-area">
+              <input
+                type="text"
+                value={mensaje}
+                onChange={(e) => setMensaje(e.target.value)}
+                placeholder="Escribí tu pregunta al paciente..."
+              />
+              <button onClick={handleEnviar}>Enviar</button>
+            </div>
+
+            <button onClick={() => setSistema(null)} className="volver-btn">
+              ← Volver
             </button>
-          ))}
-        </div>
-      ) : cargando ? (
-        <p>⏳ Cargando caso clínico...</p>
-      ) : (
-        <div className="chat-caso">
-          <div className="chat-box">
-            {mensajes.map((m, i) => (
-              <div key={i} className={`mensaje ${m.autor}`}>
-                {m.texto}
-              </div>
-            ))}
-            <div ref={chatEndRef} />
           </div>
-
-          <div className="input-area">
-            <input
-              type="text"
-              value={mensaje}
-              onChange={(e) => setMensaje(e.target.value)}
-              placeholder="Escribí tu pregunta al paciente..."
-            />
-            <button>Enviar</button>
-          </div>
-
-          <button onClick={() => setSistema(null)} className="volver-btn">
-            ← Volver
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

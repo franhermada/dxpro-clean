@@ -1,18 +1,21 @@
-/* === Sección principal === */
 .sobredxpro {
-  padding-top: 100px; /* deja espacio para la navbar fija */
+  padding-top: 130px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
-/* === Card principal === */
 .sobredxpro .card {
   max-width: 1000px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 90%;
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 14px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
   text-align: left;
+  padding: 30px 40px;
+  border-top: 5px solid #9c6ade; /* 💜 lila institucional */
 }
 
 .sobredxpro h2 {
@@ -26,7 +29,7 @@
   margin-top: 30px;
 }
 
-/* === Carrusel horizontal dentro del card === */
+/* Carrusel del equipo */
 .equipo-carrusel {
   display: flex;
   gap: 24px;
@@ -46,7 +49,6 @@
   border-radius: 10px;
 }
 
-/* === Tarjetas individuales === */
 .miembro {
   flex: 0 0 auto;
   width: 240px;
@@ -91,13 +93,18 @@
   line-height: 1.3;
 }
 
-/* === Responsive === */
 @media (max-width: 600px) {
   .sobredxpro {
-    padding-top: 90px;
+    padding-top: 110px;
   }
 
   .miembro {
     width: 200px;
   }
+}
+.sobredxpro h3,
+.sobredxpro h4 {
+  text-align: center;
+  width: 100%;
+  display: block;
 }

@@ -1,0 +1,244 @@
+/* === IMPORTACIÓN DE FUENTES === */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Merriweather:wght@700&display=swap");
+
+/* === REGLAS GLOBALES Y CORRECCIÓN DE OVERFLOW === */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  position: relative;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #111;
+  background-color: #f5f7fa;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+#root,
+.app-contenedor,
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* === ESTILOS DE TEXTO === */
+h1,
+h2,
+h3 {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  color: #002b5c;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+p,
+label,
+input,
+select,
+button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* === BASE VISUAL PARA TODAS LAS SECCIONES === */
+.seccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 20px 80px;
+  box-sizing: border-box;
+  background: url("/otros/fondo.png") center/cover no-repeat fixed;
+}
+
+/* === RECUADRO (COMO EN INICIO) === */
+.card {
+  max-width: 1000px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 40px 50px;
+  text-align: center;
+  color: #002b5c;
+}
+
+
+/* === TITULOS === */
+.card h1,
+.card h2,
+.card h3 {
+  color: #002b5c;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* === LISTAS === */
+.card ul {
+  text-align: left;
+  margin: 10px auto;
+  width: 85%;
+  list-style-type: decimal;
+}
+
+.card li {
+  margin: 10px 0;
+}
+
+/* === BOTONES === */
+.boton {
+  display: inline-block;
+  background-color: #002b5c;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.boton:hover {
+  background-color: #004a92;
+  transform: scale(1.03);
+}
+
+/* === VARIANTES DE SECCIÓN (COLOR DE ACENTO) === */
+.tutorial .card {
+  border-top: 5px solid #4b4b4b;
+}
+
+.casos-basicos .card {
+  border-top: 5px solid #0070c9;
+}
+
+.casos-avanzados .card {
+  border-top: 5px solid #ff7b00;
+}
+
+.atlas .card {
+  border-top: 5px solid #008b5c;
+}
+
+.sobre-dxpro .card {
+  background: #fff;
+  color: #002b5c;
+  border-top: 5px solid #002b5c;
+  text-align: center;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .card ul {
+    width: 95%;
+  }
+}
+/* === ESTILO MEJORADO PARA ATLAS === */
+.atlas .card {
+  border-top: 5px solid #008b5c;
+  box-shadow: 0 4px 10px rgba(0, 139, 92, 0.2);
+  padding: 50px 60px;
+  text-align: center;
+}
+
+/* Buscador elegante con ícono */
+.input-busqueda {
+  width: 100%;
+  max-width: 500px;
+  margin: 25px auto 35px;
+  padding: 12px 18px 12px 45px;
+  border-radius: 30px;
+  border: 1.5px solid #ccc;
+  font-size: 15px;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg")
+    no-repeat 15px center;
+  background-size: 18px;
+  transition: all 0.3s ease;
+  color: #111;
+}
+
+.input-busqueda:hover {
+  border-color: #008b5c;
+}
+
+.input-busqueda:focus {
+  border-color: #008b5c;
+  box-shadow: 0 0 6px rgba(0, 139, 92, 0.4);
+  outline: none;
+  transform: scale(1.02);
+}
+
+/* Botones de sistemas */
+.atlas-sistemas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.atlas-sistemas button {
+  background-color: #e6f5ef;
+  color: #004d3a;
+  border: 1.5px solid #008b5c;
+  border-radius: 12px;
+  padding: 10px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.atlas-sistemas button:hover {
+  background-color: #008b5c;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Botón activo */
+.atlas-sistemas button.activo {
+  background-color: #008b5c;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 139, 92, 0.3);
+}
+
+/* Texto de resultados */
+.atlas-resultado {
+  margin-top: 30px;
+  color: #002b5c;
+}
+
+.atlas-placeholder {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .atlas .card {
+    padding: 30px 20px;
+  }
+
+  .input-busqueda {
+    max-width: 90%;
+  }
+}

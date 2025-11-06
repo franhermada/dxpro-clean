@@ -16,9 +16,9 @@ export default function BarraNavegacion({ seccion, setSeccion, usuario, setUsuar
       <div className="navbar-center">
         <button className="nav-btn" onClick={() => setSeccion("inicio")}>Inicio</button>
         <button className="nav-btn" onClick={() => setSeccion("tutorial")}>Tutorial</button>
-        <button className="nav-btn" onClick={() => setSeccion("casos-basicos")}>Básico</button>
-        <button className="nav-btn" onClick={() => setSeccion("casos-avanzados")}>Avanzado</button>
-        <button className="nav-btn" onClick={() => setSeccion("atlas")}>Atlas</button>
+        <button className="nav-btn" onClick={() => setSeccion("casos-basicos")}>Casos Básicos</button>
+        <button className="nav-btn" onClick={() => setSeccion("casos-avanzados")}>Casos Avanzados</button>
+        <button className="nav-btn" onClick={() => setSeccion("atlas")}>Atlas Semiologico</button>
         <button className="nav-btn" onClick={() => setSeccion("sobre-dxpro")}>Sobre DxPro</button>
       </div>
 

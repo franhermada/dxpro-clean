@@ -1,318 +1,85 @@
-/* ====== RESET BÁSICO Y VARIABLES ====== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-  overflow-x: hidden; /* evita scroll horizontal */
-}
-
-:root {
-  --azul: #002b5c;
-  --azul-2: #004080;
-  --gris-borde: rgba(0, 0, 0, 0.15);
-  --card-bg: rgba(158, 241, 252, 0.74);
-  --texto: #000;
-}
-
-/* ====== BASE TIPOGRAFÍA Y FONDO ====== */
-body {
-  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--texto);
-  background: url("/otros/fondo.png") center/cover no-repeat fixed;
-  background-color: #f4f7fb; /* color base de respaldo */
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-
-/* ====== TÍTULOS ====== */
-h1,
-h2,
-h3 {
-  font-family: "Merriweather", Georgia, serif;
-  font-weight: 700;
-  color: var(--azul);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-/* ====== CONTENEDOR APP Y LAYOUT ====== */
-.app-container {
+.app-contenedor {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 75px;
-  justify-content: space-between;
-}
-
-.section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 56px 20px;
   width: 100%;
 }
 
+/* Asegura que el footer quede abajo */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Ajuste general de secciones */
+.seccion {
+  padding-top: 110px; /* deja espacio para la navbar */
+  padding-bottom: 60px; /* espacio para el footer */
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* Cartas */
 .card {
-  width: clamp(280px, 90%, 1100px);
-  padding: 40px 60px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 16px;
-  box-shadow: 0 3px 8px var(--gris-borde);
-  backdrop-filter: blur(6px);
-  margin: 40px auto;
-  text-align: center;
-  max-height: fit-content;
-}
-
-/* ====== FOOTER ====== */
-.footer {
-  width: 100%;
-  background: var(--azul);
-  color: #fff;
-  text-align: center;
-  padding: 15px 10px;
-  font-size: 0.95rem;
-  margin-top: auto;
-}
-
-/* ====== BLOQUE DE LOGOS DE INICIO ====== */
-.logos-inicio {
-  width: 100%;
-  max-width: 800px;
-  margin: 6px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.logo-principal,
-.logo-facultad,
-.logo-universidad {
-  width: 150px;
-  max-width: 40%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* ====== FORMULARIOS (LOGIN / REGISTER) ====== */
-.auth-form {
-  width: min(400px, 100%);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
+  max-width: 1000px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  padding: 30px 40px;
   text-align: left;
 }
 
-.auth-form label {
-  font-weight: 700;
-  color: var(--azul);
-}
-
-.auth-form input,
-.auth-form select,
-.auth-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.auth-form input:focus,
-.auth-form select:focus,
-.auth-form textarea:focus {
-  border-color: var(--azul-2);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.12);
-}
-
-.auth-form button {
-  background: var(--azul-2);
-  color: #fff;
-  border: 0;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 700;
-  transition: background 0.2s ease;
-}
-
-.auth-form button:hover {
-  background: #0059b3;
-  transform: translateY(-2px);
-}
-
-.switch-auth {
+/* Footer */
+.footer {
   text-align: center;
-  margin-top: 4px;
+  background: #002b5c;
+  color: white;
+  padding: 16px;
+  margin-top: auto;
 }
-
-.link-btn {
-  background: none;
-  border: none;
-  color: var(--azul-2);
-  text-decoration: underline;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.link-btn:hover {
-  color: #0059b3;
-}
-
-.price-info {
-  margin-top: 8px;
-  background: #f1f8e9;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #cddc39;
-  color: #33691e;
-  font-weight: 700;
-  text-align: center;
-}
-
-/* ====== ATLAS SEMIOLÓGICO ====== */
-.atlas-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-.atlas-search input {
-  width: clamp(260px, 100%, 520px);
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.atlas-layout {
-  width: clamp(300px, 95%, 1000px);
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.atlas-sidebar {
-  width: 220px;
-  background: #f7f9fa;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.atlas-sidebar ul {
-  list-style: none;
+/* Evita cualquier desborde global */
+html,
+body {
   margin: 0;
   padding: 0;
-}
-
-.atlas-sidebar li {
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.18s ease;
-}
-
-.atlas-sidebar li:hover,
-.atlas-sidebar li.active {
-  background: #007bff;
-  color: #fff;
-}
-
-.atlas-content {
-  flex: 1;
-  min-width: 0;
-  background: #fff;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.atlas-placeholder {
-  color: #444;
-  text-align: center;
-}
-
-/* ====== MISC ====== */
-button {
-  cursor: pointer;
-  transition: transform 0.18s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 640px) {
-  .card {
-    padding: 28px 18px;
-  }
-
-  .logos-inicio {
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-/* ✅ Imágenes: nunca más gigantes por default */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ✅ Contenedor de logos de la portada */
-.logos-inicio {
+  overflow-x: hidden;
   width: 100%;
-  max-width: 900px;
-  margin: 8px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* centrados */
-  gap: 20px;
-  flex-wrap: wrap;         /* si no entran, bajan de línea */
 }
 
-/* ✅ Tamaños consistentes de los tres logos */
-.logo-principal,
-.logo-facultad,
-.logo-universidad {
-  width: 140px;        /* tamaño base */
-  max-width: 28vw;     /* no superar el ancho de la pantalla */
-  max-height: 100px;   /* límite vertical */
-  object-fit: contain; /* nunca se deforma */
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,.1));
+/* Por si alguna card o imagen se pasa */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+/* === FIX DEFINITIVO PARA EL BODY Y DESBORDES === */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  position: relative;
 }
 
-/* Más grandes en desktop */
-@media (min-width: 900px) {
-  .logo-principal,
-  .logo-facultad,
-  .logo-universidad {
-    width: 170px;
-    max-height: 120px;
-  }
+/* Evita el bug del 100vw que causa el scroll lateral */
+body {
+  overflow-y: auto;
+  max-width: 100%;
 }
 
-/* 🛡️ Por si hay imágenes dentro de cards que se escapan */
-.card img {
-  max-height: 140px;
-  object-fit: contain;
+/* Asegura que el contenedor nunca se extienda más del viewport */
+#root,
+.app-contenedor,
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }

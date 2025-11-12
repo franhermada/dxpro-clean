@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../estilos/Secciones.css";
+import { toast } from "react-toastify";
 
 export default function Login({ backendUrl, setUsuario, setSeccion }) {
   const [email, setEmail] = useState("");
@@ -18,15 +19,15 @@ export default function Login({ backendUrl, setUsuario, setSeccion }) {
       const data = await res.json();
 
       if (res.ok) {
-        alert(`✅ Bienvenido ${data.fullName}`);
+        toast.success(`👋 Bienvenido ${data.fullName}`);
         localStorage.setItem("usuario", JSON.stringify(data));
         setUsuario(data);
         setSeccion("inicio");
       } else {
-        alert(`⚠️ ${data.error || "Error al iniciar sesión"}`);
+        toast.warning(data.error || "Error al iniciar sesión");
       }
     } catch {
-      alert("⚠️ No se pudo conectar con el servidor.");
+      toast.error("⚠️ No se pudo conectar con el servidor.");
     }
   };
 
@@ -41,14 +42,14 @@ export default function Login({ backendUrl, setUsuario, setSeccion }) {
       const data = await res.json();
 
       if (res.ok) {
-        alert("📨 Se envió un enlace de recuperación a tu correo.");
+        toast.info("📨 Se envió un enlace de recuperación a tu correo.");
         setShowModal(false);
         setRecoveryEmail("");
       } else {
-        alert(`⚠️ ${data.error || "Error al enviar el correo"}`);
+        toast.warning(data.error || "Error al enviar el correo");
       }
     } catch {
-      alert("⚠️ No se pudo conectar con el servidor.");
+      toast.error("⚠️ No se pudo conectar con el servidor.");
     }
   };
 

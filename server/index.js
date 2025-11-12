@@ -162,6 +162,46 @@ app.get("/api/caso", (req, res) => {
     res.status(500).json({ error: "Error al cargar caso clínico." });
   }
 });
+// --- Respuesta a preguntas del caso (básicos) ---
+app.post("/casos/basicos", (req, res) => {
+  const pregunta = req.body.pregunta?.toLowerCase() || "";
+  if (!pregunta.trim()) return res.json({ respuesta: "No entendí tu pregunta." });
+
+  try {
+    // Buscar el último caso cargado (el más reciente)
+    const lastCaseKey = Object.keys(loadedCases).pop();
+    if (!lastCaseKey) return res.json({ respuesta: "No hay un caso cargado actualmente." });
+
+    const c = loadedCases[lastCaseKey];
+    const norm = normalize(pregunta);
+
+    // 1️⃣ Coincidencia exacta
+    if (c.variantMapExact.has(norm)) {
+      const match = c.variantMapExact.get(norm);
+      return res.json({ respuesta: match.respuesta });
+    }
+
+    // 2️⃣ Coincidencia difusa (fuzzy search con Fuse.js)
+    const result = c.fuse.search(pregunta);
+    if (result.length > 0 && result[0].score < 0.4) {
+      const r = result[0].item.respuesta;
+      return res.json({ respuesta: r });
+    }
+
+    // 3️⃣ Coincidencia por tokens (palabras clave)
+    for (const v of c.variantIndex) {
+      if (v.tokens.some((t) => pregunta.includes(t))) {
+        return res.json({ respuesta: v.respuesta });
+      }
+    }
+
+    // 4️⃣ Si no hay coincidencias
+    return res.json({ respuesta: c.data.desconocido || "No entendí tu pregunta." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ respuesta: "Error interno al buscar respuesta." });
+  }
+});
 
 // --- Iniciar servidor ---
 app.listen(PORT, () => {

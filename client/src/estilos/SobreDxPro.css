@@ -6,6 +6,7 @@
   gap: 40px;
 }
 
+/* --- TARJETAS --- */
 .sobredxpro .card {
   max-width: 1000px;
   width: 90%;
@@ -13,23 +14,41 @@
   border-radius: 14px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
-  text-align: left;
-  padding: 30px 40px;
-  border-top: 5px solid #9c6ade; /* 💜 lila institucional */
+  text-align: center;
+  padding: 40px 50px;
+  border-top: 5px solid #9c6ade;
 }
 
-.sobredxpro h2 {
-  text-align: center;
-  color: var(--azul);
+.sobredxpro h2,
+.sobredxpro h3 {
+  color: #1a2a4a;
   margin-bottom: 20px;
 }
 
-.sobredxpro h3 {
-  color: var(--azul-2);
-  margin-top: 30px;
+/* --- ASPECTOS LEGALES --- */
+.aspectos-legales p {
+  max-width: 750px;
+  margin: 10px auto;
+  line-height: 1.7;
+  color: #222;
 }
 
-/* Carrusel del equipo */
+.aspectos-legales .link-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.aspectos-legales .link-btn:hover {
+  color: #0056b3;
+}
+
+/* --- EQUIPO DE TRABAJO (CARRUSEL RESTAURADO) --- */
 .equipo-carrusel {
   display: flex;
   gap: 24px;
@@ -37,7 +56,8 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 20px 10px;
-  margin-top: 20px;
+  margin-top: 10px;
+  justify-content: flex-start;
 }
 
 .equipo-carrusel::-webkit-scrollbar {
@@ -63,7 +83,7 @@
 
 .miembro:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .miembro img {
@@ -74,37 +94,78 @@
   margin-bottom: 10px;
 }
 
-.miembro h4 {
-  color: var(--azul);
-  font-size: 1rem;
-  margin-bottom: 6px;
+/* --- MODALES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-.miembro p {
-  font-size: 0.9rem;
+.modal-content {
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 650px;
+  padding: 25px 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-content h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #0a2342;
+}
+
+.modal-text {
+  font-size: 0.95rem;
   color: #333;
-  margin-bottom: 6px;
+  line-height: 1.6;
 }
 
-.miembro small {
+.modal-close-btn {
   display: block;
-  font-size: 0.8rem;
-  color: #555;
-  line-height: 1.3;
+  margin: 20px auto 0;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
+.modal-close-btn:hover {
+  background: #0056b3;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
   .sobredxpro {
     padding-top: 110px;
   }
 
+  .sobredxpro .card {
+    padding: 25px 20px;
+  }
+
   .miembro {
     width: 200px;
   }
-}
-.sobredxpro h3,
-.sobredxpro h4 {
-  text-align: center;
-  width: 100%;
-  display: block;
 }

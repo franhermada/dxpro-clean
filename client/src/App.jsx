@@ -10,10 +10,20 @@ import SobreDxPro from "./paginas/SobreDxPro";
 import Login from "./paginas/Login";
 import Registro from "./paginas/Registro";
 
+// 🟢 Importación para React Toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
-  const BACKEND_URL = "https://dxproes-backend.onrender.com";
+
+  const isLocal =
+    window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+  const BACKEND_URL = isLocal
+    ? "http://localhost:5000"
+    : "https://dxproes-backend.onrender.com";
 
   return (
     <div className="app-contenedor">
@@ -34,13 +44,18 @@ export default function App() {
         {seccion === "login" && (
           <Login backendUrl={BACKEND_URL} setUsuario={setUsuario} setSeccion={setSeccion} />
         )}
-        {seccion === "registro" && <Registro backendUrl={BACKEND_URL} setSeccion={setSeccion} />}
+        {seccion === "registro" && (
+          <Registro backendUrl={BACKEND_URL} setSeccion={setSeccion} />
+        )}
       </main>
 
       <footer className="footer">
         DxPRO — Todos los derechos reservados. Proyecto ideado y desarrollado por{" "}
         <b>Hermada, Juan Francisco</b>.
       </footer>
+
+      {/* 🟣 Contenedor global de Toastify (no borrar) */}
+      <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </div>
   );
 }

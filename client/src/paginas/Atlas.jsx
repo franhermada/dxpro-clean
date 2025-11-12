@@ -7,7 +7,7 @@ const Atlas = () => {
   const [sistemaActivo, setSistemaActivo] = useState(null);
   const [temaActivo, setTemaActivo] = useState(null);
 
-    const atlasData = {
+  const atlasData = {
     maniobras: {
       nombre: "Maniobras",
       color: "#c77dff",
@@ -29,9 +29,11 @@ const Atlas = () => {
         {
           titulo: "Ruidos cardíacos normales",
           tipo: "Fisiológicos",
-          descripcion: "El Primer Ruido (R1) marca el inicio de la sístole y es producido principalmente por el cierre de las válvulas Mitral y Tricúspide (AV). El Segundo Ruido (R2) marca el inicio de la diástole y es producido por el cierre de las válvulas Aórtica y Pulmonar (semilunares).",
-          localizacion: "Se escucha en todos los focos. R1 es más intenso en el ápex (foco mitral). R2 es más intenso en la base (focos aórtico y pulmonar).",
-          momento: "R1: Inicio de Sístole / R2: Inicio de Diástole",  
+          descripcion:
+            "El Primer Ruido (R1) marca el inicio de la sístole y es producido principalmente por el cierre de las válvulas Mitral y Tricúspide (AV). El Segundo Ruido (R2) marca el inicio de la diástole y es producido por el cierre de las válvulas Aórtica y Pulmonar (semilunares).",
+          localizacion:
+            "Se escucha en todos los focos. R1 es más intenso en el ápex (foco mitral). R2 es más intenso en la base (focos aórtico y pulmonar).",
+          momento: "R1: Inicio de Sístole / R2: Inicio de Diástole",
           audio: `${BASE_URL}/cardiovascular/audios/ruidos_normales_r1_r2.mp3`,
           imagen: `${BASE_URL}/cardiovascular/imagenes/diagrama_ruidos_normales.png`,
         },
@@ -40,22 +42,26 @@ const Atlas = () => {
           tipo: "Patológico (Generalmente) / Fisiológico (Raro)",
           descripcion:
             "Ruido de baja frecuencia (grave) que se escucha al inicio de la diástole. Se produce por la vibración brusca del ventrículo al llenarse rápidamente debido a una sobrecarga de volumen o disfunción sistólica (Insuficiencia Cardíaca).",
-          localizacion: "Ápex (Foco Mitral), con el paciente en decúbito lateral izquierdo.",
-          momento: "Diástole temprana (protodiástole), inmediatamente después del R2.",
+          localizacion:
+            "Ápex (Foco Mitral), con el paciente en decúbito lateral izquierdo.",
+          momento:
+            "Diástole temprana (protodiástole), inmediatamente después del R2.",
           clave: "Sordo, retumbante. Forma un ritmo de 'galope' (lub-dub-TA).",
-          audio: "/atlas/cardiovascular/audios/r3r4.mp3",
-          imagen: "/atlas/cardiovascular/imagenes/r3r4.png",
+          audio: `${BASE_URL}/cardiovascular/audios/tercer_ruido_r3.mp3`,
+          imagen: `${BASE_URL}/cardiovascular/imagenes/diagrama_r3.png`,
         },
         {
           titulo: "R4",
           tipo: "Patológico",
           descripcion:
             "Ruido de baja frecuencia que se escucha al final de la diástole. Se produce por la contracción auricular forzada que intenta llenar un ventrículo con baja distensibilidad o muy rígido (rigidez ventricular). Se asocia a hipertensión o isquemia.",
-          localizacion: "Ápex (Foco Mitral), también en el decúbito lateral izquierdo.",
-          momento: "Diástole tardía (presístole), inmediatamente antes del R1.",
-         clave: "Sordo, retumbante. Forma un ritmo de 'galope' (TA-lub-dub).",
-          imagen: "/atlas/cardiovascular/imagenes/r3r4.png",
-          audio: "/atlas/cardiovascular/audios/r3r4.mp3",
+          localizacion:
+            "Ápex (Foco Mitral), también en el decúbito lateral izquierdo.",
+          momento:
+            "Diástole tardía (presístole), inmediatamente antes del R1.",
+          clave: "Sordo, retumbante. Forma un ritmo de 'galope' (TA-lub-dub).",
+          imagen: `${BASE_URL}/cardiovascular/imagenes/r3r4.png`,
+          audio: `${BASE_URL}/cardiovascular/audios/cuarto_ruido_r4.mp3`,
         },
       ],
     },
@@ -107,15 +113,32 @@ const Atlas = () => {
     <div className="seccion atlas">
       <div className="card">
         <h1>ATLAS SEMIOLÓGICO</h1>
-        <p>Seleccioná un sistema para explorar sus signos y sonidos clínicos.</p>
-
+        <h3>Seleccioná un sistema para explorar sus signos y sonidos clínicos.</h3>
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "16px",
+            backgroundColor: "#fff3cd",
+            border: "1px solid #ffeeba",
+            borderRadius: "8px",
+            color: "#856404",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          ⚠️ Sección en desarrollo. Próximamente disponible.
+        </div>
         <div className="botones-sistemas">
           {sistemas.map((sistema) => (
             <button
               key={sistema}
-              className={`boton-sistema ${sistemaActivo === sistema ? "activo" : ""}`}
+              className={`boton-sistema ${
+                sistemaActivo === sistema ? "activo" : ""
+              }`}
               style={{ borderColor: atlasData[sistema].color }}
-              onClick={() => setSistemaActivo(sistema === sistemaActivo ? null : sistema)}
+              onClick={() =>
+                setSistemaActivo(sistema === sistemaActivo ? null : sistema)
+              }
             >
               {atlasData[sistema].nombre}
             </button>
@@ -129,16 +152,34 @@ const Atlas = () => {
               <div
                 key={index}
                 className={`tema ${temaActivo === index ? "activo" : ""}`}
-                onClick={() => setTemaActivo(temaActivo === index ? null : index)}
+                onClick={() =>
+                  setTemaActivo(temaActivo === index ? null : index)
+                }
               >
                 <h3>{tema.titulo}</h3>
                 {temaActivo === index && (
                   <div className="contenido-tema">
-                    <p><strong>Tipo:</strong> {tema.tipo}</p>
-                    {tema.descripcion && <p><strong>Descripción:</strong> {tema.descripcion}</p>}
-                    {tema.localizacion && <p><strong>Localización:</strong> {tema.localizacion}</p>}
-                    {tema.momento && <p><strong>Fase:</strong> {tema.momento}</p>}
-                    {tema.imagen && <img src={tema.imagen} alt={tema.titulo} />}
+                    <p>
+                      <strong>Tipo:</strong> {tema.tipo}
+                    </p>
+                    {tema.descripcion && (
+                      <p>
+                        <strong>Descripción:</strong> {tema.descripcion}
+                      </p>
+                    )}
+                    {tema.localizacion && (
+                      <p>
+                        <strong>Localización:</strong> {tema.localizacion}
+                      </p>
+                    )}
+                    {tema.momento && (
+                      <p>
+                        <strong>Fase:</strong> {tema.momento}
+                      </p>
+                    )}
+                    {tema.imagen && (
+                      <img src={tema.imagen} alt={tema.titulo} />
+                    )}
                     {tema.audio && (
                       <audio controls src={tema.audio}>
                         Tu navegador no soporta audio.

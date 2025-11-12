@@ -23,17 +23,17 @@
       "respuesta": "Tengo 55 años."
     },
     "motivo_consulta": {
-      "variantes": [
-        "por qué viene",
-        "a que viene",
-        "que lo trae por acá",
-        "por que venis",
-        "que te pasa",
-        "que te duele",
-        "que te anda pasando"
-      ],
-      "respuesta": "Vine porque me duele el pecho, es un dolor muy fuerte."
-    },
+  "variantes": [
+    "por qué viene",
+    "a que viene",
+    "que lo trae por acá",
+    "por que venis",
+    "que te pasa",
+    "que te anda pasando",
+    "cual es el motivo de la consulta"
+  ],
+  "respuesta": "Vine porque me duele mucho el pecho"
+},
     "inicio": {
       "variantes": [
         "cuando empezo el dolor",
@@ -42,7 +42,7 @@
         "cuando arranco el dolor",
         "inicio del dolor"
       ],
-      "respuesta": "Empezó hace un par de horas, de golpe, mientras subía unas escaleras."
+      "respuesta": "Empezó hace un par de horas, aproximadamente 2 horas."
     },
     "contexto_inicio": {
       "variantes": [
@@ -55,16 +55,20 @@
       "respuesta": "Estaba subiendo unas escaleras cuando me empezó el dolor."
     },
     "localizacion": {
-      "variantes": [
-        "donde te duele",
-        "ubicacion del dolor",
-        "en que parte",
-        "donde lo sentis",
-        "donde te molesta",
-        "dolor en el pecho"
-      ],
-      "respuesta": "En el medio del pecho, como si me apretaran fuerte."
-    },
+  "variantes": [
+    "donde te duele",
+    "en que parte te duele",
+    "donde sentis el dolor",
+    "podrias decir donde te duele",
+    "señalame donde te duele",
+    "mostrame donde te duele",
+    "ubicacion del dolor",
+    "en que parte del cuerpo sentis el dolor",
+    "donde lo sentis",
+    "donde te molesta"
+  ],
+  "respuesta": "El dolor lo siento justo en el medio del pecho, detrás del esternón."
+},
     "irradiacion": {
       "variantes": [
         "se va para algun lado",
@@ -85,7 +89,7 @@
         "que sensación tenes",
         "es opresivo o punzante"
       ],
-      "respuesta": "Es como si me apretaran el pecho con una piedra, muy fuerte."
+      "respuesta": "Es como si me apretaran el pecho"
     },
     "intensidad": {
       "variantes": [
@@ -302,7 +306,17 @@
         "examen abdominal",
         "barriga"
       ],
-      "respuesta": "Está blando, depresible y no duele al apretar."
+      "respuesta": "Está blando, depresible y no duele al apretar."    
+    },
+    "godet": {
+      "variantes": [
+        "godet",
+        "edema",
+        "palpacion piernas",
+        "hinchazon piernas",
+        "edema en miembros inferiores"
+      ],
+      "respuesta": "Sin edema, no hay godet en miembros inferiores."
     },
     "electrocardiograma": {
       "variantes": [
@@ -344,14 +358,17 @@
   },
   "evaluacion": {
     "diagnostico_presuntivo": [
-      "Infarto agudo de miocardio con supradesnivel del ST (IAMCEST)",
+      "Infarto agudo de miocardio",
       "Pericarditis aguda",
       "Disección aórtica",
       "Embolia pulmonar",
       "Neumonía"
     ],
+    "diagnostico_definitivo": [
+      "Infarto agudo de miocardio con supradesnivel del ST (IAMCEST)"
+    ],
     "tratamiento_inicial_esperado": [
-      "Aspirina 300 mg masticada",
+      "Aspirina 300 mg vía oral",
       "Oxígeno suplementario si SatO2 < 94%",
       "Monitoreo cardíaco continuo",
       "Acceso venoso periférico",

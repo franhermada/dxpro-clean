@@ -119,10 +119,6 @@ button {
   border-top: 5px solid #4b4b4b;
 }
 
-.casos-basicos .card {
-  border-top: 5px solid #0070c9;
-}
-
 .casos-avanzados .card {
   border-top: 5px solid #ff7b00;
 }
@@ -496,4 +492,161 @@ button {
 .link-btn.small {
   font-size: 0.9rem;
   color: #555;
+}
+/* Modal fondo oscuro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Contenedor del modal */
+.modal-content {
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Título y texto */
+.modal-content h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modal-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Botón cerrar */
+.modal-close-btn {
+  display: block;
+  margin: 20px auto 0;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #0056b3;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+/* Estilo limpio para la línea de "He leído y acepto..." */
+.auth-terminos {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #fff; /* o #222 si el fondo es claro */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.auth-terminos label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.auth-terminos input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 6px;
+}
+
+/* Para que el link no rompa la línea ni quede cortado */
+.auth-terminos .link-btn {
+  color: #007bff;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.auth-terminos .link-btn:hover {
+  color: #0056b3;
+}
+/* --- TOASTIFY PERSONALIZADO PARA DxPRO --- */
+
+.Toastify__toast {
+  border-radius: 12px !important;
+  font-family: "Inter", "Segoe UI", sans-serif !important;
+  font-size: 0.95rem !important;
+  padding: 12px 18px !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #9c6ade, #6e4ca3) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #ff5c5c, #c94a4a) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #ffcc70, #ffb347) !important;
+  color: #333 !important;
+  font-weight: 600 !important;
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, #5caeff, #3a7bd5) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.Toastify__progress-bar {
+  height: 4px !important;
+  border-radius: 0 0 12px 12px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Íconos */
+.Toastify__toast-icon svg {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* Centramos visualmente y damos aire */
+.Toastify__toast-container {
+  padding: 10px !important;
+}
+
+.Toastify__close-button {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.Toastify__close-button:hover {
+  color: #fff !important;
 }

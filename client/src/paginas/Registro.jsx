@@ -1,11 +1,20 @@
 import { useState } from "react";
 import "../estilos/Secciones.css";
+import { toast } from "react-toastify";
 
 export default function Registro({ backendUrl, setSeccion }) {
   const [universidad, setUniversidad] = useState("");
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
   const registrarUsuario = async (e) => {
     e.preventDefault();
+
+    if (!aceptaTerminos) {
+      toast.warning("⚠️ Debes aceptar los términos y condiciones para registrarte.");
+      return;
+    }
+
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData.entries());
 
@@ -18,13 +27,13 @@ export default function Registro({ backendUrl, setSeccion }) {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Registro exitoso. Ya puedes iniciar sesión.");
+        toast.success("✅ Registro exitoso. Ya puedes iniciar sesión.");
         setSeccion("login");
       } else {
-        alert(`⚠️ ${data.error || "Error al registrarse"}`);
+        toast.warning(data.error || "Error al registrarse");
       }
     } catch {
-      alert("⚠️ No se pudo conectar con el servidor.");
+      toast.error("⚠️ No se pudo conectar con el servidor.");
     }
   };
 
@@ -71,6 +80,27 @@ export default function Registro({ backendUrl, setSeccion }) {
             )}
           </div>
 
+          {/* Checkbox de términos y condiciones */}
+          <div className="auth-terminos">
+            <label>
+              <input
+                type="checkbox"
+                checked={aceptaTerminos}
+                onChange={(e) => setAceptaTerminos(e.target.checked)}
+                required
+              />
+              {" "}He leído y acepto los{" "}
+              <button
+                type="button"
+                className="link-btn"
+                onClick={() => setMostrarModal(true)}
+              >
+                Términos y Condiciones
+              </button>{" "}
+              de uso de la plataforma.
+            </label>
+          </div>
+
           <button type="submit" className="auth-btn">Registrarme</button>
         </form>
 
@@ -81,6 +111,45 @@ export default function Registro({ backendUrl, setSeccion }) {
           </button>
         </p>
       </div>
+
+      {/* Modal de Términos y Condiciones */}
+      {mostrarModal && (
+        <div className="modal-overlay" onClick={() => setMostrarModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Términos y Condiciones</h3>
+            <div className="modal-text">
+              <p>
+                DxPRO es un proyecto educativo diseñado para brindar herramientas de
+                aprendizaje clínico. Nos comprometemos a proteger la privacidad de las
+                personas usuarias y a manejar la información de manera responsable,
+                transparente y segura, conforme a la Ley 25.326 de Protección de los Datos
+                Personales.
+              </p>
+              <p>
+                Los datos se utilizarán exclusivamente para el funcionamiento de la
+                plataforma y la mejora de sus herramientas educativas. En ningún caso se
+                compartirán con terceros.
+              </p>
+              <p>
+                El usuario podrá ejercer sus derechos de acceso, rectificación o
+                eliminación contactando a{" "}
+                <b>dxproes@gmail.com</b>.
+              </p>
+              <p>
+                Para más información, consulta la versión completa de nuestra política de
+                privacidad disponible en la sección “Aspectos legales” de DxPRO.
+              </p>
+            </div>
+
+            <button
+              className="modal-close-btn"
+              onClick={() => setMostrarModal(false)}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

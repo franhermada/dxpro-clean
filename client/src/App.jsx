@@ -18,12 +18,21 @@ export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
 
+  // 🧩 Sistema híbrido de backend automático
+  const hostname = window.location.hostname;
   const isLocal =
-    window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname.startsWith("192.168.") ||
+    window.location.protocol === "file:";
 
+  // 🟢 Si estás en local → usa el backend local
+  // 🔵 Si estás publicado (GitHub Pages, Netlify, etc.) → usa Render
   const BACKEND_URL = isLocal
     ? "http://localhost:5000"
     : "https://dxproes-backend.onrender.com";
+
+  console.log("🌐 Conectando a backend:", BACKEND_URL);
 
   return (
     <div className="app-contenedor">
@@ -54,7 +63,7 @@ export default function App() {
         <b>Hermada, Juan Francisco</b>.
       </footer>
 
-      {/* 🟣 Contenedor global de Toastify (no borrar) */}
+      {/* 🟣 Contenedor global de Toastify */}
       <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </div>
   );

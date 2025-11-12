@@ -16,9 +16,10 @@ export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  // 🌍 URLs de backend
-  const LOCAL_BACKEND = "http://localhost:5000";
-  const REMOTE_BACKEND = "https://dxproes-backend.onrender.com";
+  // 🔹 URLs de backend (redefinidas para evitar truncado)
+const LOCAL_BACKEND = `http://${"localhost:5000"}`;
+const REMOTE_BACKEND = `https://${"dxproes-backend.onrender.com"}`;
+
 
   // 🧠 Detectar entorno
   const hostname = window.location.hostname;

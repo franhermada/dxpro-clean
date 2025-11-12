@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./estilos/App.css";
 import BarraNavegacion from "./componentes/BarraNavegacion";
 import Inicio from "./paginas/Inicio";
@@ -16,11 +16,11 @@ export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  // 🌐 URLs de backend
+  // 🌍 URLs de backend
   const LOCAL_BACKEND = "http://localhost:5000";
   const REMOTE_BACKEND = "https://dxproes-backend.onrender.com";
 
-  // 🧠 Detecta entorno
+  // 🧠 Detectar entorno
   const hostname = window.location.hostname;
   const isLocal =
     hostname === "localhost" ||
@@ -28,13 +28,11 @@ export default function App() {
     hostname.startsWith("192.168.") ||
     window.location.protocol === "file:";
 
-  // 🪄 Sistema híbrido: testea backend local y cae al remoto si no responde
-  const [BACKEND_URL, setBACKEND_URL] = useState(
-    isLocal ? LOCAL_BACKEND : REMOTE_BACKEND
-  );
+  // 🔄 Estado para la URL activa del backend
+  const [BACKEND_URL, setBACKEND_URL] = useState(isLocal ? LOCAL_BACKEND : REMOTE_BACKEND);
 
-  // Testeo automático del backend local cuando inicia
-  useState(() => {
+  // ✅ Probar si el backend local está activo al iniciar
+  useEffect(() => {
     if (isLocal) {
       fetch(`${LOCAL_BACKEND}/`)
         .then((res) => {
@@ -42,7 +40,7 @@ export default function App() {
             console.log("✅ Conectado al backend local");
             setBACKEND_URL(LOCAL_BACKEND);
           } else {
-            throw new Error("Local backend no responde");
+            throw new Error("Backend local no responde");
           }
         })
         .catch(() => {
@@ -54,6 +52,20 @@ export default function App() {
       setBACKEND_URL(REMOTE_BACKEND);
     }
   }, []);
+
+  // 🔁 Ping automático cada 30 segundos (solo en producción)
+  useEffect(() => {
+    if (!isLocal) {
+      const interval = setInterval(() => {
+        fetch(`${REMOTE_BACKEND}/`)
+          .then((res) => {
+            if (res.ok) console.log("🔄 Render mantenido despierto");
+          })
+          .catch(() => console.warn("⚠️ No se pudo hacer ping a Render"));
+      }, 30000); // 30 segundos
+      return () => clearInterval(interval);
+    }
+  }, [isLocal]);
 
   console.log("🌐 Backend activo:", BACKEND_URL);
 

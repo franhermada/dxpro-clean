@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import "../estilos/Casos.css";
 
 export default function CasosBasicos({ backendUrl }) {
+  const cleanBackendUrl = backendUrl?.trim().replace(/\/+$/, ""); // ✅ normaliza la URL
+
   const [sistemaSeleccionado, setSistemaSeleccionado] = useState(null);
   const [caso, setCaso] = useState(null);
   const [mensajes, setMensajes] = useState([]);
@@ -42,7 +44,7 @@ export default function CasosBasicos({ backendUrl }) {
     setDiagnosticosUsuario([]);
 
     try {
-      const res = await fetch(`${backendUrl}/api/caso?system=${sistema.id}`);
+      const res = await fetch(`${cleanBackendUrl}/api/caso?system=${sistema.id}`);
       const data = await res.json();
 
       if (res.ok && data.presentacion) {
@@ -70,14 +72,16 @@ export default function CasosBasicos({ backendUrl }) {
     setEnviando(true);
 
     try {
-      const res = await fetch(`${backendUrl}/casos/basicos`, {
+      const res = await fetch(`${cleanBackendUrl}/casos/basicos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pregunta }),
       });
+
+      if (!res.ok) throw new Error(`Error HTTP ${res.status}`);
       const data = await res.json();
 
-      if (res.ok && data.respuesta) {
+      if (data.respuesta) {
         setMensajes((prev) => [...prev, { texto: data.respuesta, emisor: "bot" }]);
       } else {
         setMensajes((prev) => [
@@ -92,13 +96,11 @@ export default function CasosBasicos({ backendUrl }) {
         { texto: "Error de conexión con el servidor.", emisor: "bot" },
       ]);
     } finally {
-  setEnviando(false);
-
-  // ✅ Espera un pequeño instante antes de reenfocar
-  setTimeout(() => {
-    inputRef.current?.focus();
-  }, 50);
-}
+      setEnviando(false);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
+    }
   };
 
   const manejarEnter = (e) => {
@@ -152,7 +154,7 @@ export default function CasosBasicos({ backendUrl }) {
   // --- Evaluación final ---
   const handleEvaluation = async () => {
     try {
-      const res = await fetch(`${backendUrl}/api/evaluar`, {
+      const res = await fetch(`${cleanBackendUrl}/api/evaluar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -194,17 +196,17 @@ export default function CasosBasicos({ backendUrl }) {
 
   // --- Scroll automático controlado ---
   useEffect(() => {
-  const chatContainer = document.querySelector(".chat-mensajes");
-  if (!chatContainer) return;
+    const chatContainer = document.querySelector(".chat-mensajes");
+    if (!chatContainer) return;
 
-  const ultimo = mensajes[mensajes.length - 1];
-  if (ultimo && !ultimo.texto.startsWith("➡️ ")) {
-    chatContainer.scrollTo({
-      top: chatContainer.scrollHeight,
-      behavior: "smooth",
-    });
-  }
-}, [mensajes]);
+    const ultimo = mensajes[mensajes.length - 1];
+    if (ultimo && !ultimo.texto.startsWith("➡️ ")) {
+      chatContainer.scrollTo({
+        top: chatContainer.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [mensajes]);
 
   return (
     <div className="seccion casos-basicos">
@@ -216,7 +218,6 @@ export default function CasosBasicos({ backendUrl }) {
           estudios complementarios, el sistema devuelve el informe correspondiente.
         </p>
 
-        {/* === SELECCIÓN DE SISTEMA === */}
         {!sistemaSeleccionado && !cargando && (
           <div className="sistemas-container">
             <h3>Seleccioná un sistema:</h3>
@@ -230,7 +231,6 @@ export default function CasosBasicos({ backendUrl }) {
           </div>
         )}
 
-        {/* === CARTEL DE CARGA === */}
         {cargando && (
           <div className="cargando-caso">
             <div className="spinner"></div>
@@ -238,7 +238,6 @@ export default function CasosBasicos({ backendUrl }) {
           </div>
         )}
 
-        {/* === CHAT === */}
         {sistemaSeleccionado && caso && !cargando && (
           <div className="caso-chat">
             <div className="chat-mensajes">
@@ -260,11 +259,10 @@ export default function CasosBasicos({ backendUrl }) {
               <div ref={chatEndRef} />
             </div>
 
-            {/* INPUT */}
             {!showEvaluation && !evaluationResult && (
               <div className="chat-input">
                 <input
-                ref={inputRef}
+                  ref={inputRef}
                   type="text"
                   placeholder="Escribí tu pregunta al paciente..."
                   value={pregunta}
@@ -278,7 +276,6 @@ export default function CasosBasicos({ backendUrl }) {
               </div>
             )}
 
-            {/* FASES */}
             {!showEvaluation && !evaluationResult && (
               <div className="fase-buttons">
                 {fase === "anamnesis" && (
@@ -304,7 +301,6 @@ export default function CasosBasicos({ backendUrl }) {
               </div>
             )}
 
-            {/* FORMULARIO DE EVALUACIÓN */}
             {showEvaluation && !evaluationResult && (
               <div className="evaluacion-form">
                 <h3>Evaluación del Caso</h3>
@@ -340,7 +336,6 @@ export default function CasosBasicos({ backendUrl }) {
               </div>
             )}
 
-            {/* RESULTADOS */}
             {evaluationResult && (
               <div className="evaluacion-resultado">
                 <h3>Resultados</h3>
@@ -371,7 +366,6 @@ export default function CasosBasicos({ backendUrl }) {
               </div>
             )}
 
-            {/* BOTÓN VOLVER (durante el caso) */}
             {!showEvaluation && (
               <button
                 className="volver-btn"

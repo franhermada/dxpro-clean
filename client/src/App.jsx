@@ -9,16 +9,18 @@ import Atlas from "./paginas/Atlas";
 import SobreDxPro from "./paginas/SobreDxPro";
 import Login from "./paginas/Login";
 import Registro from "./paginas/Registro";
-
-// 🟢 Importación para React Toastify
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  // 🧩 Sistema híbrido de backend automático
+  // 🌐 URLs de backend
+  const LOCAL_BACKEND = "http://localhost:5000";
+  const REMOTE_BACKEND = "https://dxproes-backend.onrender.com";
+
+  // 🧠 Detecta entorno
   const hostname = window.location.hostname;
   const isLocal =
     hostname === "localhost" ||
@@ -26,13 +28,34 @@ export default function App() {
     hostname.startsWith("192.168.") ||
     window.location.protocol === "file:";
 
-  // 🟢 Si estás en local → usa el backend local
-  // 🔵 Si estás publicado (GitHub Pages, Netlify, etc.) → usa Render
-  const BACKEND_URL = isLocal
-    ? "http://localhost:5000"
-    : "https://dxproes-backend.onrender.com";
+  // 🪄 Sistema híbrido: testea backend local y cae al remoto si no responde
+  const [BACKEND_URL, setBACKEND_URL] = useState(
+    isLocal ? LOCAL_BACKEND : REMOTE_BACKEND
+  );
 
-  console.log("🌐 Conectando a backend:", BACKEND_URL);
+  // Testeo automático del backend local cuando inicia
+  useState(() => {
+    if (isLocal) {
+      fetch(`${LOCAL_BACKEND}/`)
+        .then((res) => {
+          if (res.ok) {
+            console.log("✅ Conectado al backend local");
+            setBACKEND_URL(LOCAL_BACKEND);
+          } else {
+            throw new Error("Local backend no responde");
+          }
+        })
+        .catch(() => {
+          console.warn("⚠️ Backend local no disponible, usando Render");
+          setBACKEND_URL(REMOTE_BACKEND);
+          toast.info("Usando backend en la nube (Render)");
+        });
+    } else {
+      setBACKEND_URL(REMOTE_BACKEND);
+    }
+  }, []);
+
+  console.log("🌐 Backend activo:", BACKEND_URL);
 
   return (
     <div className="app-contenedor">

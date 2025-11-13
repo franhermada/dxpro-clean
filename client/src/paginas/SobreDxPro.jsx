@@ -45,124 +45,127 @@ export default function SobreDxPro() {
         <div className="equipo-carrusel">
           {/* Cada miembro */}
           <div className="miembro">
-            <img src="/equipo/nico.png" alt="Pereyra Diaz, Nicolas" />
-            <h4>Pereyra Diaz, Nicolas</h4>
-            <p>Director del Proyecto; Asesoría en Simulación y Desarrollo de Casos Clínicos</p>
-            <small>
-              Médico especialista en Medicina General y Familiar; Docente del Área de Simulación. — Facultad de Ciencias de la Salud (UNCPBA)
-            </small>
-          </div>
+  <img src="/equipo/nico.png" alt="Pereyra Díaz, Nicolás" />
+  <h4>Pereyra Díaz, Nicolás</h4>
+  <p><b>Director del Proyecto Asesor en Simulación y Desarrollo de Casos Clínicos</b></p>
+  <small>
+    Médico Especialista en Medicina General y Familiar.  
+    Docente del Área de Simulación — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA).
+  </small>
+</div>
 
           <div className="miembro">
-            <img src="/equipo/pablo.png" alt="Luchini, Pablo" />
-            <h4>Luchini, Pablo</h4>
-            <p>Asesoría en Simulación y Desarrollo de Casos Clínicos</p>
-            <small>
-              Médico especialista en Medicina General y Familiar y Emergentología; Docente del Área de Simulación. — Facultad de Ciencias de la Salud (UNCPBA)
-            </small>
-          </div>
+  <img src="/equipo/pablo.png" alt="Luchini, Pablo" />
+  <h4>Luchini, Pablo</h4>
+  <p><b>Asesor en Simulación y Desarrollo de Casos Clínicos</b></p>
+  <small>
+    Médico Especialista en Medicina General y Familiar y en Emergentología.  
+    Docente del Área de Simulación — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA).
+  </small>
+</div>
 
           <div className="miembro">
-            <img src="/equipo/guada.png" alt="Gainza, Guadalupe" />
-            <h4>Gainza, Guadalupe</h4>
-            <p>Asesoría en Simulación y Desarrollo de Casos Clínicos</p>
-            <small>
-              Médica especialista en Clínica Médica; Docente del Área de Simulación. — Facultad de Ciencias de la Salud (UNCPBA)
-            </small>
-          </div>
+  <img src="/equipo/guada.png" alt="Gainza, Guadalupe" />
+  <h4>Gainza, Guadalupe</h4>
+  <p><b>Asesora en Simulación y Desarrollo de Casos Clínicos</b></p>
+  <small>
+    Médica Especialista en Clínica Médica.  
+    Docente del Área de Simulación — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
+  </small>
+</div>
 
           <div className="miembro">
-            <img src="/equipo/santi.png" alt="Pacheco, Santiago" />
-            <h4>Pacheco, Santiago</h4>
-            <p>Asesoría legal referida a “Términos y Condiciones”, “Política de Privacidad” y "Registro de la marca".</p>
-            <small>
-              Abogado y Docente. — Facultad de Ciencias de la Salud (UNCPBA)
-            </small>
-          </div>
+  <img src="/equipo/santi.png" alt="Pacheco, Santiago" />
+  <h4>Pacheco, Santiago</h4>
+  <p><b>Asesor Legal Términos y Condiciones, Política de Privacidad y Registro de Marca</b></p>
+  <small>
+    Abogado y Docente — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
+  </small>
+</div>
 
           <div className="miembro">
             <img src="/equipo/pablito.png" alt="Guzman, Pablo" />
             <h4>Guzman, Pablo</h4>
-            <p>Asesoría técnica en Simulación</p>
+            <p><b>Asesor Técnico en Simulación</b></p>
             <small>
-              Encargado del área de Simulación. — Facultad de Ciencias de la Salud (UNCPBA)
+              No Docente; Encargado del área de Simulación. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/juan.png" alt="Hermada, Juan Francisco" />
             <h4>Hermada, Juan Francisco</h4>
-            <p>Idea, desarrollo web y soporte técnico del Proyecto</p>
+            <p><b>Idea, Desarrollo Web y Soporte Técnico del Proyecto</b></p>
             <small>
-              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/rodri.png" alt="Rinomo Guzman, Rodrigo" />
             <h4>Rinomo Guzman, Rodrigo</h4>
-            <p>Tester de la plataforma; asistente de desarrollo de casos clínicos</p>
+            <p><b>Tester de la plataforma; Asistente en desarrollo de casos clínicos</b></p>
             <small>
-              Estudiante avanzado de Medicina, ayudante alumno en simulación. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina, ayudante alumno en simulación. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/joaco.png" alt="Maldonado, Joaquín" />
             <h4>Maldonado, Joaquín</h4>
-            <p>Idea y recopilación de información del Atlas Semiologico; asistente de desarrollo de casos clínicos</p>
+            <p><b>Idea y Recopilación del Atlas Semiologico; asistente de desarrollo de casos clínicos</b></p>
             <small>
-              Estudiante avanzado de Medicina, ayudante alumno en simulación. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina, ayudante alumno en simulación. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/resti.png" alt="Restivo, Franco Nicolas" />
             <h4>Restivo, Franco Nicolas</h4>
-            <p>Tester de la plataforma</p>
+            <p><b>Tester de la plataforma</b></p>
             <small>
-              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/fede.png" alt="Lencina, Federico" />
             <h4>Lencina, Federico</h4>
-            <p>Asesoría en el armado, testeo y corrección de casos clínicos</p>
+            <p><b>Asesor en Armado, Testeo y Corrección de Casos Clínicos</b></p>
             <small>Médico Residente de Clínica Médica. — Hospital Héctor M. Cura</small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/vini.png" alt="De Oliveira Alves, Vinicius" />
             <h4>De Oliveira Alves, Vinicius</h4>
-            <p>Asesoría en el armado, testeo y corrección de casos clínicos</p>
+            <p><b>Asesor en Armado, Testeo y Corrección de Casos Clínicos</b></p>
             <small>Médico Residente de Terapia Intensiva. — Hospital Héctor M. Cura</small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/arbi.png" alt="Arbillaga, Tomás" />
             <h4>Arbillaga, Tomás</h4>
-            <p>Asesoría en el armado, testeo y corrección de casos clínicos</p>
+            <p><b>Asesor en Armado, Testeo y Corrección de Casos Clínicos</b></p>
             <small>
-              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/ivo.png" alt="Hait, Ivo" />
             <h4>Hait, Ivo</h4>
-            <p>Asistencia en desarrollo web y soporte técnico.</p>
+            <p><b>Asistencia en Desarrollo Web y Soporte Técnico</b></p>
             <small>
-              Estudiante intermedio de Medicina. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante intermedio de Medicina. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
 
           <div className="miembro">
             <img src="/equipo/leo.png" alt="Martinez Binelli, Leonetto Agustín" />
             <h4>Martinez Binelli, Leonetto Agustín</h4>
-            <p>Tester de la plataforma</p>
+            <p><b>Tester de la Plataforma</b></p>
             <small>
-              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud (UNCPBA)
+              Estudiante avanzado de Medicina. — Facultad de Ciencias de la Salud, Universidad Nacional del Centro de la Provincia de Buenos Aires (UNCPBA)
             </small>
           </div>
         </div>

@@ -16,12 +16,19 @@ export default function App() {
   const [seccion, setSeccion] = useState("inicio");
   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  // 🔹 URLs de backend (redefinidas para evitar truncado)
-const LOCAL_BACKEND = `http://${"localhost:5000"}`;
-const REMOTE_BACKEND = `https://${"dxproes-backend.onrender.com"}`;
+  // ======================================================
+  //  🔥 URLS PROTEGIDAS (Netlify NO puede truncarlas)
+  // ======================================================
+  const LOCAL_BACKEND = `http://${"localhost:5000"}`;
+  
+  // ⛔ NUNCA pongas onrender.com como string pura
+  // ⛔ porque Netlify la recorta quedando “onre.com”
+  const REMOTE_BACKEND =
+    `https://${"dxproes-backend"}.onrender.com`; // 🔥 100% seguro y no truncable
 
-
-  // 🧠 Detectar entorno
+  // =============================================
+  //  🔍 Detección de entorno (local vs producción)
+  // =============================================
   const hostname = window.location.hostname;
   const isLocal =
     hostname === "localhost" ||
@@ -29,47 +36,54 @@ const REMOTE_BACKEND = `https://${"dxproes-backend.onrender.com"}`;
     hostname.startsWith("192.168.") ||
     window.location.protocol === "file:";
 
-  // 🔄 Estado para la URL activa del backend
-  const [BACKEND_URL, setBACKEND_URL] = useState(isLocal ? LOCAL_BACKEND : REMOTE_BACKEND);
+  const [BACKEND_URL, setBACKEND_URL] = useState(
+    isLocal ? LOCAL_BACKEND : REMOTE_BACKEND
+  );
 
-  // ✅ Probar si el backend local está activo al iniciar
+  // =============================================
+  //  🔄 Probar si backend local está activo
+  // =============================================
   useEffect(() => {
     if (isLocal) {
-      fetch(`${LOCAL_BACKEND}/`)
+      fetch(`${LOCAL_BACKEND}/ping`)
         .then((res) => {
           if (res.ok) {
-            console.log("✅ Conectado al backend local");
+            console.log("✅ Backend local activo");
             setBACKEND_URL(LOCAL_BACKEND);
           } else {
-            throw new Error("Backend local no responde");
+            throw new Error("No responde");
           }
         })
         .catch(() => {
-          console.warn("⚠️ Backend local no disponible, usando Render");
+          console.warn("⚠️ Local apagado → usando Render");
           setBACKEND_URL(REMOTE_BACKEND);
-          toast.info("Usando backend en la nube (Render)");
+          toast.info("Backend en la nube (Render)");
         });
     } else {
       setBACKEND_URL(REMOTE_BACKEND);
     }
   }, []);
 
-  // 🔁 Ping automático cada 30 segundos (solo en producción)
+  // ======================================================
+  //  🔁 Ping automático para mantener vivo Render (30s)
+  // ======================================================
   useEffect(() => {
     if (!isLocal) {
       const interval = setInterval(() => {
-        fetch(`${REMOTE_BACKEND}/`)
-          .then((res) => {
-            if (res.ok) console.log("🔄 Render mantenido despierto");
-          })
-          .catch(() => console.warn("⚠️ No se pudo hacer ping a Render"));
-      }, 30000); // 30 segundos
+        fetch(`${REMOTE_BACKEND}/ping`)
+          .then((r) => r.ok && console.log("🔄 Render mantenido despierto"))
+          .catch(() => console.warn("⚠️ Falló ping a Render"));
+      }, 30000);
+
       return () => clearInterval(interval);
     }
   }, [isLocal]);
 
   console.log("🌐 Backend activo:", BACKEND_URL);
 
+  // ======================================================
+  //  RENDER PRINCIPAL
+  // ======================================================
   return (
     <div className="app-contenedor">
       <BarraNavegacion
@@ -87,7 +101,11 @@ const REMOTE_BACKEND = `https://${"dxproes-backend.onrender.com"}`;
         {seccion === "atlas" && <Atlas />}
         {seccion === "sobre-dxpro" && <SobreDxPro />}
         {seccion === "login" && (
-          <Login backendUrl={BACKEND_URL} setUsuario={setUsuario} setSeccion={setSeccion} />
+          <Login
+            backendUrl={BACKEND_URL}
+            setUsuario={setUsuario}
+            setSeccion={setSeccion}
+          />
         )}
         {seccion === "registro" && (
           <Registro backendUrl={BACKEND_URL} setSeccion={setSeccion} />
@@ -99,7 +117,6 @@ const REMOTE_BACKEND = `https://${"dxproes-backend.onrender.com"}`;
         <b>Hermada, Juan Francisco</b>.
       </footer>
 
-      {/* 🟣 Contenedor global de Toastify */}
       <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </div>
   );
